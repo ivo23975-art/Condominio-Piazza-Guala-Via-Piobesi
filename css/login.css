@@ -65,3 +65,48 @@ input, select {
   margin-top: 20px;
   opacity: 0.8;
 }
+/* === Effetti WOW login === */
+body {
+  background: radial-gradient(circle at top, #1e3a5f, #0f2027);
+  color: white;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.login-container {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  padding: 2rem 3rem;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  animation: slideUp 1.2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+button, .btn-login {
+  background: #00a8ff;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover, .btn-login:hover {
+  background: #0090e0;
+  box-shadow: 0 0 15px rgba(0,168,255,0.6);
+  transform: translateY(-3px);
+}
