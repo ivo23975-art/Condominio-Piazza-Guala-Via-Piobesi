@@ -156,6 +156,56 @@ footer {
   from { transform: scale(0.9); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
+/* === NAVBAR / BREADCRUMB === */
+.breadcrumb-bar {
+  background: linear-gradient(90deg, #1e3a5f, #0074d9);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.breadcrumb-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.home-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: opacity 0.2s ease;
+}
+
+.home-link:hover {
+  opacity: 0.8;
+}
+
+#breadcrumb-path {
+  color: #d0e8ff;
+  font-weight: 400;
+}
+
+#exit-button {
+  background: #00a8ff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#exit-button:hover {
+  background: #0074d9;
+}
+
 
 
 
