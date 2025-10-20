@@ -28,3 +28,12 @@ document.querySelector(".btn-login").addEventListener("click", (e) => {
   btn.classList.add("pulse");
   setTimeout(() => btn.classList.remove("pulse"), 800);
 });
+// Mostra mini loader prima del reindirizzamento
+const loader = document.createElement("div");
+loader.className = "login-loader";
+loader.innerHTML = '<div class="spinner"></div>';
+document.body.appendChild(loader);
+
+// Rimuovi il loader dopo pochi secondi
+setTimeout(() => loader.classList.add("hide"), 1500);
+setTimeout(() => loader.remove(), 2500);
