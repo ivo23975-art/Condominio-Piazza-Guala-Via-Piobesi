@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amministratore Sito – Condominio Piazza Guala</title>
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="dash-header admin-sito">
+    <h1><i data-lucide="settings"></i> Area Amministratore Sito</h1>
+    <button id="logout">Esci</button>
+  </header>
+
+  <main class="dashboard">
+    <div class="card">
+      <i data-lucide="database"></i>
+      <h2>Backup e Database</h2>
+      <p>Esegui o ripristina i backup del sito condominiale.</p>
+      <button>Gestisci backup</button>
+    </div>
+
+    <div class="card">
+      <i data-lucide="activity"></i>
+      <h2>Monitoraggio Attività</h2>
+      <p>Visualizza accessi, modifiche e statistiche.</p>
+      <button>Visualizza log</button>
+    </div>
+
+    <div class="card wide">
+      <canvas id="chart-visitatori"></canvas>
+    </div>
+
+    <div class="card">
+      <i data-lucide="shield"></i>
+      <h2>Sicurezza</h2>
+      <p>Gestisci permessi, autenticazioni e sicurezza generale.</p>
+      <button>Impostazioni</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Condominio Piazza Guala – Via Piobesi | Pannello Amministratore Sito</p>
+  </footer>
+
+  <script src="../js/dashboard.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+      const ctx = document.getElementById("chart-visitatori");
+      new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"],
+          datasets: [{
+            label: "Accessi al portale",
+            data: [12, 19, 7, 14, 20, 16, 10],
+            borderColor: "#00a8ff",
+            fill: true,
+            backgroundColor: "rgba(0, 168, 255, 0.1)",
+          }],
+        },
+        options: {
+          scales: { y: { beginAtZero: true } },
+        },
+      });
+    });
+  </script>
+</body>
+</html>
