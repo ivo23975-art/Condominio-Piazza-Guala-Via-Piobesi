@@ -205,6 +205,72 @@ footer {
 #exit-button:hover {
   background: #0074d9;
 }
+/* === ANIMAZIONI E TRANSIZIONI WOW === */
+
+/* Loader generale */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1e3a5f, #00a8ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  transition: opacity 0.5s ease;
+}
+
+.loader-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader {
+  border: 6px solid rgba(255,255,255,0.2);
+  border-top: 6px solid #fff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Card fade-in con leggero slide */
+.card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+.card:nth-child(1) { animation-delay: 0.2s; }
+.card:nth-child(2) { animation-delay: 0.4s; }
+.card:nth-child(3) { animation-delay: 0.6s; }
+.card:nth-child(4) { animation-delay: 0.8s; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Effetto 3D hover */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+/* Transizione modale */
+.modal-overlay {
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
 
 
 
