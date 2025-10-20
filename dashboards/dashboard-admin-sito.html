@@ -25,33 +25,49 @@
   </nav>
 
   <main class="dashboard">
-    <!-- STATISTICHE -->
+
+    <!-- SEZIONE STATISTICHE -->
     <div class="card wide">
-      <h2><i data-lucide="activity"></i> Statistiche portale</h2>
+      <h2><i data-lucide="activity"></i> Statistiche del portale</h2>
       <canvas id="statsChart"></canvas>
     </div>
 
-    <!-- BACKUP -->
+    <!-- SEZIONE BACKUP -->
     <div class="card">
       <h2><i data-lucide="database"></i> Backup del sito</h2>
       <p>Avvia un salvataggio completo dei dati e dei file.</p>
       <button id="backupBtn">Avvia backup</button>
-      <div id="backupProgress" class="progress-bar">
-        <div class="progress"></div>
-      </div>
+      <div id="backupProgress" class="progress-bar"><div class="progress"></div></div>
       <p id="backupStatus" class="status"></p>
     </div>
 
-    <!-- SICUREZZA -->
+    <!-- SEZIONE SICUREZZA -->
     <div class="card">
       <h2><i data-lucide="lock"></i> Sicurezza</h2>
-      <p>Monitoraggio in tempo reale della sicurezza del sito.</p>
+      <p>Monitoraggio in tempo reale dello stato del sito.</p>
       <div class="security-status">
         <div class="status-box green">🟢 Sistema protetto</div>
         <div class="status-box yellow">🟡 Firewall in aggiornamento</div>
         <div class="status-box red">🔴 Nessuna minaccia rilevata</div>
       </div>
     </div>
+
+    <!-- SEZIONE GESTIONE CONTENUTI -->
+    <div class="card wide">
+      <h2><i data-lucide="edit-3"></i> Gestione contenuti e comunicazioni</h2>
+      <textarea id="newPost" placeholder="Scrivi un nuovo annuncio o aggiornamento..."></textarea>
+      <button id="publishBtn">Pubblica</button>
+      <ul id="postList"></ul>
+    </div>
+
+    <!-- SEZIONE DOCUMENTI -->
+    <div class="card wide">
+      <h2><i data-lucide="file-plus"></i> Documenti condivisi</h2>
+      <p>Carica o visualizza i documenti condominiali.</p>
+      <input type="file" id="uploadFile" multiple />
+      <ul id="fileList"></ul>
+    </div>
+
   </main>
 
   <footer>
@@ -59,12 +75,10 @@
   </footer>
 
   <script src="../js/dashboard.js"></script>
-
   <script>
-    // ICONS
     lucide.createIcons();
 
-    // GRAFICO STATISTICHE
+    // ===== GRAFICO VISITE =====
     const ctx = document.getElementById("statsChart");
     new Chart(ctx, {
       type: "line",
@@ -75,17 +89,12 @@
           data: [5, 7, 9, 14, 12, 15, 20],
           borderColor: "#00a8ff",
           tension: 0.4,
-          fill: {
-            target: "origin",
-            above: "rgba(0,168,255,0.15)"
-          }
+          fill: { target: "origin", above: "rgba(0,168,255,0.15)" }
         }]
       },
       options: {
         responsive: true,
-        plugins: {
-          legend: { display: false }
-        },
+        plugins: { legend: { display: false } },
         scales: {
           y: { beginAtZero: true, grid: { color: "rgba(255,255,255,0.2)" } },
           x: { grid: { display: false } }
@@ -93,7 +102,7 @@
       }
     });
 
-    // BACKUP SIMULATO
+    // ===== BACKUP SIMULATO =====
     const backupBtn = document.getElementById("backupBtn");
     const progressBar = document.querySelector(".progress");
     const backupStatus = document.getElementById("backupStatus");
@@ -107,13 +116,40 @@
       const interval = setInterval(() => {
         progress += 5;
         progressBar.style.width = progress + "%";
-
         if (progress >= 100) {
           clearInterval(interval);
           backupStatus.textContent = "✅ Backup completato con successo!";
           backupBtn.disabled = false;
         }
       }, 150);
+    });
+
+    // ===== GESTIONE CONTENUTI =====
+    const publishBtn = document.getElementById("publishBtn");
+    const postList = document.getElementById("postList");
+
+    publishBtn.addEventListener("click", () => {
+      const text = document.getElementById("newPost").value.trim();
+      if (text === "") return alert("Scrivi qualcosa da pubblicare!");
+      const li = document.createElement("li");
+      li.innerHTML = `<i data-lucide="message-square"></i> ${text}`;
+      postList.prepend(li);
+      document.getElementById("newPost").value = "";
+      lucide.createIcons();
+    });
+
+    // ===== UPLOAD DOCUMENTI =====
+    const uploadInput = document.getElementById("uploadFile");
+    const fileList = document.getElementById("fileList");
+
+    uploadInput.addEventListener("change", (e) => {
+      const files = Array.from(e.target.files);
+      files.forEach(file => {
+        const li = document.createElement("li");
+        li.innerHTML = `<i data-lucide="file"></i> ${file.name} <span style="color:#00a8ff;">(simulato)</span>`;
+        fileList.appendChild(li);
+      });
+      lucide.createIcons();
     });
   </script>
 </body>
