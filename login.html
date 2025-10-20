@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accesso Condominio Piazza Guala – Via Piobesi</title>
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+  <div class="login-container">
+    <h1>🔐 Accesso al portale</h1>
+    <p>Seleziona la modalità di accesso e inserisci le tue credenziali</p>
+
+    <form id="login-form">
+      <label for="login-type">Tipo di accesso</label>
+      <select id="login-type" required>
+        <option value="">-- Seleziona --</option>
+        <option value="condomino">Condòmino</option>
+        <option value="admin-condominio">Amministratore Condominio</option>
+        <option value="admin-sito">Amministratore Sito</option>
+      </select>
+
+      <label for="username">Nome e Cognome o ID</label>
+      <input type="text" id="username" placeholder="Mario Rossi o ID123" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Inserisci la password" required>
+
+      <button type="submit" class="btn-login">Accedi</button>
+    </form>
+
+    <p class="note">© 2025 Condominio Piazza Guala – Via Piobesi</p>
+  </div>
+
+  <script src="js/login.js"></script>
+</body>
+</html>
