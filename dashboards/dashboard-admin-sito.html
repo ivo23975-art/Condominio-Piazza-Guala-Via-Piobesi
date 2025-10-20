@@ -124,19 +124,30 @@
       }, 150);
     });
 
-    // ===== GESTIONE CONTENUTI =====
-    const publishBtn = document.getElementById("publishBtn");
-    const postList = document.getElementById("postList");
+   // ===== GESTIONE CONTENUTI (con salvataggio locale) =====
+const publishBtn = document.getElementById("publishBtn");
+const postList = document.getElementById("postList");
 
-    publishBtn.addEventListener("click", () => {
-      const text = document.getElementById("newPost").value.trim();
-      if (text === "") return alert("Scrivi qualcosa da pubblicare!");
-      const li = document.createElement("li");
-      li.innerHTML = `<i data-lucide="message-square"></i> ${text}`;
-      postList.prepend(li);
-      document.getElementById("newPost").value = "";
-      lucide.createIcons();
-    });
+// Carica eventuali post salvati
+const savedPosts = JSON.parse(localStorage.getItem("posts") || "[]");
+savedPosts.forEach(text => addPost(text));
+
+publishBtn.addEventListener("click", () => {
+  const text = document.getElementById("newPost").value.trim();
+  if (text === "") return alert("Scrivi qualcosa da pubblicare!");
+  addPost(text);
+  savedPosts.unshift(text);
+  localStorage.setItem("posts", JSON.stringify(savedPosts));
+  document.getElementById("newPost").value = "";
+});
+
+function addPost(text) {
+  const li = document.createElement("li");
+  li.innerHTML = `<i data-lucide="message-square"></i> ${text}`;
+  postList.prepend(li);
+  lucide.createIcons();
+}
+
 
     // ===== UPLOAD DOCUMENTI =====
     const uploadInput = document.getElementById("uploadFile");
