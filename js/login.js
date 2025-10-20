@@ -22,3 +22,9 @@ document.getElementById("login-form").addEventListener("submit", function(e) {
       break;
   }
 });
+// Effetto luce pulsante
+document.querySelector(".btn-login").addEventListener("click", (e) => {
+  const btn = e.target;
+  btn.classList.add("pulse");
+  setTimeout(() => btn.classList.remove("pulse"), 800);
+});
