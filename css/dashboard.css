@@ -270,6 +270,33 @@ footer {
 .modal-overlay {
   transition: opacity 0.4s ease, visibility 0.4s ease;
 }
+/* === TRANSIZIONE DI PAGINA === */
+body {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+body.loaded {
+  opacity: 1;
+}
+
+/* Animazione sequenziale delle card su caricamento */
+.card {
+  will-change: transform, opacity;
+}
+
+/* Pulsanti con effetto “pressione dolce” */
+button, #logout, #exit-button {
+  transition: all 0.3s ease;
+}
+button:active, #logout:active, #exit-button:active {
+  transform: scale(0.95);
+}
+
+/* Effetto glow su hover pulsanti principali */
+#logout:hover, #exit-button:hover, .btn:hover {
+  box-shadow: 0 0 10px rgba(0,168,255,0.6);
+}
+
 
 
 
