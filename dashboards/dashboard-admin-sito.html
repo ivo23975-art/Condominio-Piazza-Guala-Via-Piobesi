@@ -124,12 +124,12 @@
       }, 150);
     });
 
-   // ===== GESTIONE CONTENUTI (con salvataggio locale) =====
+  // ===== GESTIONE CONTENUTI (con salvataggio locale) =====
 const publishBtn = document.getElementById("publishBtn");
 const postList = document.getElementById("postList");
 
 // Carica eventuali post salvati
-const savedPosts = JSON.parse(localStorage.getItem("posts") || "[]");
+let savedPosts = JSON.parse(localStorage.getItem("posts") || "[]");
 savedPosts.forEach(text => addPost(text));
 
 publishBtn.addEventListener("click", () => {
@@ -148,20 +148,29 @@ function addPost(text) {
   lucide.createIcons();
 }
 
+// ===== UPLOAD DOCUMENTI (con memoria locale) =====
+const uploadInput = document.getElementById("uploadFile");
+const fileList = document.getElementById("fileList");
 
-    // ===== UPLOAD DOCUMENTI =====
-    const uploadInput = document.getElementById("uploadFile");
-    const fileList = document.getElementById("fileList");
+// Carica i file salvati
+let savedFiles = JSON.parse(localStorage.getItem("files") || "[]");
+savedFiles.forEach(fileName => addFile(fileName));
 
-    uploadInput.addEventListener("change", (e) => {
-      const files = Array.from(e.target.files);
-      files.forEach(file => {
-        const li = document.createElement("li");
-        li.innerHTML = `<i data-lucide="file"></i> ${file.name} <span style="color:#00a8ff;">(simulato)</span>`;
-        fileList.appendChild(li);
-      });
-      lucide.createIcons();
-    });
+uploadInput.addEventListener("change", (e) => {
+  const files = Array.from(e.target.files);
+  files.forEach(file => {
+    addFile(file.name);
+    savedFiles.push(file.name);
+  });
+  localStorage.setItem("files", JSON.stringify(savedFiles));
+});
+
+function addFile(name) {
+  const li = document.createElement("li");
+  li.innerHTML = `<i data-lucide="file"></i> ${name} <span style="color:#00a8ff;">(simulato)</span>`;
+  fileList.appendChild(li);
+  lucide.createIcons();
+}
   </script>
 </body>
 </html>
