@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Amministratore Sito – Condominio Piazza Guala – Via Piobesi</title>
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <header class="dash-header admin-sito">
+    <h1><i data-lucide="monitor"></i> Dashboard Amministratore Sito</h1>
+    <button id="logout">Esci</button>
+  </header>
+
+  <main class="dashboard">
+    <div class="card" id="backup">
+      <i data-lucide="cloud-snow"></i>
+      <h2>Backup</h2>
+      <p>Gestisci backup e versioni del sito.</p>
+      <button>Accedi</button>
+    </div>
+
+    <div class="card" id="monitoraggio">
+      <i data-lucide="activity"></i>
+      <h2>Monitoraggio</h2>
+      <p>Statistiche di accesso e performance.</p>
+      <button>Visualizza</button>
+    </div>
+
+    <div class="card" id="sicurezza">
+      <i data-lucide="shield-check"></i>
+      <h2>Sicurezza</h2>
+      <p>Controlla log e autorizzazioni.</p>
+      <button>Controlla</button>
+    </div>
+
+    <section class="chart-section">
+      <h2>Visite settimanali</h2>
+      <canvas id="visite-chart"></canvas>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Condominio Piazza Guala – Via Piobesi</p>
+  </footer>
+
+  <script>
+    const ctx2 = document.getElementById('visite-chart');
+    new Chart(ctx2, {
+      type: 'line',
+      data: {
+        labels: ['Lun','Mar','Mer','Gio','Ven','Sab','Dom'],
+        datasets: [{
+          label: 'Visite',
+          data: [120, 200, 150, 220, 180, 240, 300],
+          borderColor: '#3e95cd',
+          fill: false,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            enabled: true
+          }
+        }
+      }
+    });
+  </script>
+  <script src="../js/dashboard.js"></script>
+</body>
+</html>
