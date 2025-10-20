@@ -1,6 +1,4 @@
-/* === STILE RESPONSIVE PER CONDOMINIO PIAZZA GUALA - VIA PIOBESI === */
-
-/* Reset e base */
+/* === STILE RESPONSIVE CON HAMBURGER MENU === */
 * {
   margin: 0;
   padding: 0;
@@ -18,28 +16,31 @@ body {
 header {
   background-color: #1e3a5f;
   color: #fff;
-  padding: 15px 0;
-  text-align: center;
+  padding: 15px 20px;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .logo {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: bold;
-  letter-spacing: 0.5px;
+}
+
+/* Navbar standard */
+#navbar {
+  display: flex;
 }
 
 #navbar ul {
   list-style: none;
-  margin-top: 10px;
-}
-
-#navbar li {
-  display: inline-block;
-  margin: 0 12px;
+  display: flex;
+  gap: 20px;
 }
 
 #navbar a {
@@ -53,6 +54,21 @@ header {
 #navbar a.active {
   color: #9cd3ff;
   text-decoration: underline;
+}
+
+/* === HAMBURGER MENU === */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 4px 0;
+  transition: 0.3s;
 }
 
 /* === HERO === */
@@ -75,7 +91,7 @@ header {
   color: #444;
 }
 
-/* === SEZIONI PRINCIPALI === */
+/* === SEZIONI === */
 section {
   padding: 40px 20px;
   text-align: center;
@@ -117,38 +133,31 @@ footer {
   font-size: 0.9rem;
 }
 
-/* === RESPONSIVE DESIGN === */
+/* === RESPONSIVE === */
 @media (max-width: 768px) {
-  #navbar li {
-    display: block;
-    margin: 8px 0;
+  .hamburger {
+    display: flex;
   }
 
-  header {
-    padding: 10px;
+  #navbar {
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    background-color: #1e3a5f;
+  }
+
+  #navbar.active {
+    display: flex;
+  }
+
+  #navbar ul {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
   }
 
   .logo {
-    font-size: 1.2rem;
-  }
-
-  .hero h1 {
-    font-size: 1.5rem;
-  }
-
-  .hero p {
-    font-size: 0.95rem;
-  }
-
-  .btn {
-    padding: 8px 15px;
-    font-size: 0.95rem;
-  }
-}
-
-@media (max-width: 480px) {
-  body {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
   }
 
   .hero {
@@ -156,6 +165,6 @@ footer {
   }
 
   footer {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
 }
