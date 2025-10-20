@@ -8,79 +8,113 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
+
+<body class="admin-sito">
   <header class="dash-header admin-sito">
-    <h1><i data-lucide="monitor"></i> Dashboard Amministratore Sito</h1>
+    <h1><i data-lucide="shield"></i> Dashboard Amministratore Sito</h1>
     <button id="logout">Esci</button>
   </header>
-<!-- NAVIGAZIONE E BREADCRUMB -->
-<nav class="breadcrumb-bar">
-  <div class="breadcrumb-left">
-    <a href="../index.html" class="home-link">🏠 Home</a>
-    <span id="breadcrumb-path"></span>
-  </div>
-  <button id="exit-button">🔑 Esci</button>
-</nav>
+
+  <!-- NAVIGAZIONE E BREADCRUMB -->
+  <nav class="breadcrumb-bar">
+    <div class="breadcrumb-left">
+      <a href="../index.html" class="home-link">🏠 Home</a>
+      <span id="breadcrumb-path"></span>
+    </div>
+    <button id="exit-button">🔑 Esci</button>
+  </nav>
 
   <main class="dashboard">
-    <div class="card" id="backup">
-      <i data-lucide="cloud-snow"></i>
-      <h2>Backup</h2>
-      <p>Gestisci backup e versioni del sito.</p>
-      <button>Accedi</button>
+    <!-- STATISTICHE -->
+    <div class="card wide">
+      <h2><i data-lucide="activity"></i> Statistiche portale</h2>
+      <canvas id="statsChart"></canvas>
     </div>
 
-    <div class="card" id="monitoraggio">
-      <i data-lucide="activity"></i>
-      <h2>Monitoraggio</h2>
-      <p>Statistiche di accesso e performance.</p>
-      <button>Visualizza</button>
+    <!-- BACKUP -->
+    <div class="card">
+      <h2><i data-lucide="database"></i> Backup del sito</h2>
+      <p>Avvia un salvataggio completo dei dati e dei file.</p>
+      <button id="backupBtn">Avvia backup</button>
+      <div id="backupProgress" class="progress-bar">
+        <div class="progress"></div>
+      </div>
+      <p id="backupStatus" class="status"></p>
     </div>
 
-    <div class="card" id="sicurezza">
-      <i data-lucide="shield-check"></i>
-      <h2>Sicurezza</h2>
-      <p>Controlla log e autorizzazioni.</p>
-      <button>Controlla</button>
+    <!-- SICUREZZA -->
+    <div class="card">
+      <h2><i data-lucide="lock"></i> Sicurezza</h2>
+      <p>Monitoraggio in tempo reale della sicurezza del sito.</p>
+      <div class="security-status">
+        <div class="status-box green">🟢 Sistema protetto</div>
+        <div class="status-box yellow">🟡 Firewall in aggiornamento</div>
+        <div class="status-box red">🔴 Nessuna minaccia rilevata</div>
+      </div>
     </div>
-
-    <section class="chart-section">
-      <h2>Visite settimanali</h2>
-      <canvas id="visite-chart"></canvas>
-    </section>
   </main>
 
   <footer>
     <p>&copy; 2025 Condominio Piazza Guala – Via Piobesi</p>
   </footer>
 
+  <script src="../js/dashboard.js"></script>
+
   <script>
-    const ctx2 = document.getElementById('visite-chart');
-    new Chart(ctx2, {
-      type: 'line',
+    // ICONS
+    lucide.createIcons();
+
+    // GRAFICO STATISTICHE
+    const ctx = document.getElementById("statsChart");
+    new Chart(ctx, {
+      type: "line",
       data: {
-        labels: ['Lun','Mar','Mer','Gio','Ven','Sab','Dom'],
+        labels: ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"],
         datasets: [{
-          label: 'Visite',
-          data: [120, 200, 150, 220, 180, 240, 300],
-          borderColor: '#3e95cd',
-          fill: false,
-          tension: 0.4
+          label: "Visite giornaliere",
+          data: [5, 7, 9, 14, 12, 15, 20],
+          borderColor: "#00a8ff",
+          tension: 0.4,
+          fill: {
+            target: "origin",
+            above: "rgba(0,168,255,0.15)"
+          }
         }]
       },
       options: {
         responsive: true,
         plugins: {
-          legend: {
-            display: false
-          },
-          tooltip: {
-            enabled: true
-          }
+          legend: { display: false }
+        },
+        scales: {
+          y: { beginAtZero: true, grid: { color: "rgba(255,255,255,0.2)" } },
+          x: { grid: { display: false } }
         }
       }
     });
+
+    // BACKUP SIMULATO
+    const backupBtn = document.getElementById("backupBtn");
+    const progressBar = document.querySelector(".progress");
+    const backupStatus = document.getElementById("backupStatus");
+
+    backupBtn.addEventListener("click", () => {
+      let progress = 0;
+      backupBtn.disabled = true;
+      progressBar.style.width = "0%";
+      backupStatus.textContent = "🔄 Backup in corso...";
+
+      const interval = setInterval(() => {
+        progress += 5;
+        progressBar.style.width = progress + "%";
+
+        if (progress >= 100) {
+          clearInterval(interval);
+          backupStatus.textContent = "✅ Backup completato con successo!";
+          backupBtn.disabled = false;
+        }
+      }, 150);
+    });
   </script>
-  <script src="../js/dashboard.js"></script>
 </body>
 </html>
