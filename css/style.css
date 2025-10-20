@@ -1,0 +1,77 @@
+/* === Stile base per Condominio Piazza Guala - Via Piobesi === */
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+/* Navbar */
+header {
+  background-color: #1e3a5f;
+  color: white;
+  padding: 15px 0;
+  text-align: center;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+#navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#navbar li {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+#navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#navbar a:hover {
+  text-decoration: underline;
+}
+
+/* Sezioni */
+main {
+  padding: 30px;
+  text-align: center;
+}
+
+h1, h2 {
+  color: #1e3a5f;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 15px;
+  background-color: #1e3a5f;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: #2a528a;
+}
+
+/* Footer */
+footer {
+  background-color: #1e3a5f;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 20px;
+}
