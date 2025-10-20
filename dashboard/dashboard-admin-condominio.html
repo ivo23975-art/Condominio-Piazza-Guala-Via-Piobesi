@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amministratore Condominio – Condominio Piazza Guala</title>
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="dash-header admin-cond">
+    <h1><i data-lucide="briefcase"></i> Area Amministratore Condominio</h1>
+    <button id="logout">Esci</button>
+  </header>
+
+  <main class="dashboard">
+    <div class="card wide">
+      <i data-lucide="users"></i>
+      <h2>Gestione Condòmini</h2>
+      <p>Aggiungi, modifica o rimuovi utenti registrati.</p>
+      <button>Gestisci utenti</button>
+    </div>
+
+    <div class="card">
+      <i data-lucide="file-text"></i>
+      <h2>Documenti</h2>
+      <p>Carica verbali, bilanci o comunicazioni ufficiali.</p>
+      <button>Apri archivio</button>
+    </div>
+
+    <div class="card">
+      <i data-lucide="send"></i>
+      <h2>Comunicazioni</h2>
+      <p>Invia messaggi a singoli condòmini o a tutto il condominio.</p>
+      <button>Nuova comunicazione</button>
+    </div>
+
+    <div class="card wide">
+      <canvas id="chart-spese"></canvas>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Condominio Piazza Guala – Via Piobesi | Pannello Amministratore Condominio</p>
+  </footer>
+
+  <script src="../js/dashboard.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+      const ctx = document.getElementById("chart-spese");
+      new Chart(ctx, {
+        type: "doughnut",
+        data: {
+          labels: ["Manutenzione", "Pulizie", "Energia", "Altro"],
+          datasets: [{
+            data: [45, 25, 20, 10],
+            backgroundColor: ["#1e3a5f", "#0074d9", "#00a8ff", "#9cd3ff"],
+          }],
+        },
+        options: {
+          plugins: { legend: { position: "bottom" } },
+        },
+      });
+    });
+  </script>
+</body>
+</html>
