@@ -1,4 +1,4 @@
-// === SCRIPT PER HAMBURGER MENU ===
+// === SCRIPT HAMBURGER MENU ===
 document.addEventListener("DOMContentLoaded", () => {
   const hamburger = document.querySelector(".hamburger");
   const navbar = document.querySelector("#navbar");
@@ -7,4 +7,21 @@ document.addEventListener("DOMContentLoaded", () => {
     navbar.classList.toggle("active");
     hamburger.classList.toggle("open");
   });
+
+  // === ANIMAZIONE SEZIONI IN ENTRATA ===
+  const sections = document.querySelectorAll("section");
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  sections.forEach(section => observer.observe(section));
 });
+
