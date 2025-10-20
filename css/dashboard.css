@@ -93,3 +93,18 @@ footer {
   margin-top: 30px;
   font-size: 0.9rem;
 }
+/* === COLORI PER I VARI RUOLI === */
+.admin-cond .dash-header {
+  background: linear-gradient(90deg, #1e3a5f, #0074d9);
+}
+
+.admin-sito .dash-header {
+  background: linear-gradient(90deg, #0f2027, #2c5364);
+}
+
+/* Card larghe per grafici */
+.card.wide {
+  grid-column: span 2;
+}
+
+
