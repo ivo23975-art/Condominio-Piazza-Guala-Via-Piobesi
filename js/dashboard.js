@@ -6,6 +6,19 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 // ===============================
+// 🔹 LOADER ANIMATO INIZIALE
+// ===============================
+window.addEventListener("load", () => {
+  const loader = document.createElement("div");
+  loader.className = "loader-overlay";
+  loader.innerHTML = '<div class="loader"></div>';
+  document.body.appendChild(loader);
+
+  // Mostra per un attimo l'effetto
+  setTimeout(() => loader.classList.add("hidden"), 1000);
+  setTimeout(() => loader.remove(), 1800);
+});
+// ===============================
 // 🔹 SEZIONE: Modale dinamica + simulazioni
 // ===============================
 
@@ -61,5 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
 
 
