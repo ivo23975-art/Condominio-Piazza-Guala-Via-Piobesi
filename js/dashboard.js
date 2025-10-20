@@ -74,6 +74,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+// ===============================
+// 🔹 FASE 4 – Effetto comparsa pagina + card animate
+// ===============================
+
+// Quando la pagina è pronta, mostra transizione fade-in
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("loaded");
+});
+
+// Aggiunge effetto di comparsa sequenziale alle card
+document.querySelectorAll(".card").forEach((card, index) => {
+  card.style.opacity = "0";
+  card.style.transform = "translateY(20px)";
+  setTimeout(() => {
+    card.style.transition = "all 0.6s ease";
+    card.style.opacity = "1";
+    card.style.transform = "translateY(0)";
+  }, 300 * (index + 1));
+});
+
 
 
 
