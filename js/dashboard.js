@@ -38,4 +38,28 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => modal.classList.remove("active"), 3500);
   }
 });
+// ===============================
+// 🔹 SEZIONE NAVIGAZIONE DINAMICA
+// ===============================
+document.addEventListener("DOMContentLoaded", () => {
+  // Mostra breadcrumb dinamico in base alla pagina
+  const path = window.location.pathname;
+  let pageName = "Dashboard";
+
+  if (path.includes("condomino")) pageName = "Area Condòmino";
+  if (path.includes("admin-condominio")) pageName = "Amministratore Condominio";
+  if (path.includes("admin-sito")) pageName = "Amministratore Sito";
+
+  const breadcrumb = document.getElementById("breadcrumb-path");
+  if (breadcrumb) breadcrumb.innerHTML = `/ ${pageName}`;
+
+  // Pulsante Esci → torna al login
+  const exitBtn = document.getElementById("exit-button");
+  if (exitBtn) {
+    exitBtn.addEventListener("click", () => {
+      window.location.href = "../login.html";
+    });
+  }
+});
+
 
