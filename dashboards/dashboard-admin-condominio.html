@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Amministratore Condominio – Condominio Piazza Guala – Via Piobesi</title>
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <header class="dash-header admin-condominio">
+    <h1><i data-lucide="settings"></i> Dashboard Amministratore Condominio</h1>
+    <button id="logout">Esci</button>
+  </header>
+
+  <main class="dashboard">
+    <div class="card" id="gestione-condomini">
+      <i data-lucide="users"></i>
+      <h2>Gestione Condòmini</h2>
+      <p>Aggiungi, modifica o visualizza i condomini.</p>
+      <button>Vai</button>
+    </div>
+
+    <div class="card" id="documenti-admin">
+      <i data-lucide="file-text"></i>
+      <h2>Documenti</h2>
+      <p>Carica verbali, bilanci e comunicazioni.</p>
+      <button>Apri</button>
+    </div>
+
+    <div class="card" id="comunicazioni">
+      <i data-lucide="bell-ring"></i>
+      <h2>Comunicazioni</h2>
+      <p>Invia notifiche ai condomini.</p>
+      <button>Invia</button>
+    </div>
+
+    <section class="chart-section">
+      <h2>Spese condominiali – ultimo anno</h2>
+      <canvas id="spese-chart"></canvas>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Condominio Piazza Guala – Via Piobesi</p>
+  </footer>
+
+  <script>
+    const ctx = document.getElementById('spese-chart');
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Manutenzione', 'Pulizie', 'Portineria', 'Sicurezza'],
+        datasets: [{
+          label: 'Spese (%)',
+          data: [40, 25, 20, 15],
+          backgroundColor: ['#3e95cd','#8e5ea2','#3cba9f','#e8c3b9']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }
+    });
+  </script>
+  <script src="../js/dashboard.js"></script>
+</body>
+</html>
