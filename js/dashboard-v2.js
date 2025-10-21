@@ -1,17 +1,18 @@
 // ===============================
-// ✅ DASHBOARD UNIFICATA - FUNZIONANTE
+// ✅ DASHBOARD UNIFICATA - FUNZIONANTE (versione finale)
 // ===============================
 
 // Log per debug
-console.log("🔥 dashboard.js caricato correttamente");
+console.log("🔥 dashboard-v2.js caricato correttamente");
 
-document.addEventListener("DOMContentLoaded", () => {
+// Tutto parte solo quando la pagina è completamente caricata
+window.addEventListener("load", () => {
+  console.log("✅ DOM completamente caricato, attivo tutte le funzioni");
+  lucide.createIcons();
 
   // ===============================
   // 🔹 NAVIGAZIONE E LOGOUT
   // ===============================
-  lucide.createIcons();
-
   const logoutBtn = document.getElementById("logout");
   if (logoutBtn) logoutBtn.addEventListener("click", () => window.location.href = "../login.html");
 
@@ -151,12 +152,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  console.log("✅ Tutte le funzioni operative");
+  console.log("✅ Tutte le funzioni operative e DOM gestito correttamente");
 });
-
-
-
-
-
-
-
