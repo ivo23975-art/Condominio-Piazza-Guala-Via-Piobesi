@@ -1,3 +1,6 @@
+/* ===============================
+   🌈 DASHBOARD WOW - STILE 2025
+   =============================== */
 :root {
   --primary: #1e3a5f;
   --accent: #00a8ff;
@@ -5,6 +8,9 @@
   --text: #333;
 }
 
+/* ===============================
+   BASE E ANIMAZIONE DI PAGINA
+   =============================== */
 body {
   font-family: "Poppins", sans-serif;
   margin: 0;
@@ -12,12 +18,14 @@ body {
   color: var(--text);
   background: var(--bg);
   background-attachment: fixed;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.6s ease, background 2s ease;
   opacity: 0;
 }
 body.loaded { opacity: 1; }
 
-/* Header */
+/* ===============================
+   HEADER
+   =============================== */
 .dash-header {
   background: linear-gradient(90deg, #1e3a5f, #0074d9);
   color: white;
@@ -26,14 +34,20 @@ body.loaded { opacity: 1; }
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 .dash-header h1 {
   display: flex;
   align-items: center;
   gap: 10px;
+  font-size: 1.3rem;
 }
 
-/* Sidebar admin */
+/* ===============================
+   SIDEBAR ADMIN
+   =============================== */
 .sidebar {
   position: fixed;
   top: 0; left: 0;
@@ -48,21 +62,52 @@ body.loaded { opacity: 1; }
   transition: width 0.3s ease;
   overflow: hidden;
   z-index: 999;
+  box-shadow: 4px 0 10px rgba(0,0,0,0.3);
 }
 .sidebar:hover { width: 200px; }
-.sidebar i { color: white; cursor: pointer; transition: transform 0.2s ease; }
-.sidebar i:hover { transform: scale(1.2); }
+.sidebar i {
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+.sidebar i:hover {
+  transform: scale(1.2);
+  color: var(--accent);
+}
 
-/* Dashboard grid */
+/* ===============================
+   BREADCRUMB / NAVBAR
+   =============================== */
+.breadcrumb-bar {
+  background: linear-gradient(90deg, #1e3a5f, #0074d9);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+.home-link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+.home-link:hover { text-decoration: underline; }
+
+/* ===============================
+   DASHBOARD GRID
+   =============================== */
 .dashboard {
   margin-left: 80px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
   padding: 30px;
 }
 
-/* Card effetto vetro */
+/* ===============================
+   CARD - VETRO 3D EFFETTO
+   =============================== */
 .card {
   background: rgba(255,255,255,0.8);
   border-radius: 16px;
@@ -71,13 +116,25 @@ body.loaded { opacity: 1; }
   text-align: center;
   backdrop-filter: blur(10px);
   transition: transform 0.4s ease, box-shadow 0.3s ease;
+  animation: elevate 0.8s ease forwards;
+  transform: translateY(10px);
+  opacity: 0;
 }
 .card:hover {
   transform: translateY(-6px) scale(1.02);
   box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
+@keyframes elevate {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
 
-/* Buttons */
+/* Card larga */
+.card.wide { grid-column: span 2; }
+
+/* ===============================
+   BOTTONI ANIMATI
+   =============================== */
 button {
   background: linear-gradient(90deg, #00a8ff, #0074d9);
   border: none;
@@ -90,9 +147,50 @@ button {
   overflow: hidden;
   transition: all 0.3s ease;
 }
-button:hover { box-shadow: 0 0 15px rgba(0,168,255,0.5); transform: translateY(-3px); }
+button:hover {
+  box-shadow: 0 0 15px rgba(0,168,255,0.5);
+  transform: translateY(-3px);
+}
+button:active { transform: scale(0.96); }
 
-/* Loader */
+/* ===============================
+   TEXTAREA E INPUT
+   =============================== */
+textarea, input[type="file"] {
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  margin-top: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  background: rgba(255,255,255,0.8);
+}
+textarea { height: 90px; resize: none; }
+
+/* ===============================
+   LISTE DI POST E FILE
+   =============================== */
+#postList, #fileList {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+#postList li, #fileList li {
+  background: rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #1e3a5f;
+  font-weight: 500;
+}
+
+/* ===============================
+   LOADER ANIMATO
+   =============================== */
 .loader-overlay {
   position: fixed;
   top: 0; left: 0;
@@ -112,7 +210,9 @@ button:hover { box-shadow: 0 0 15px rgba(0,168,255,0.5); transform: translateY(-
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* Toast */
+/* ===============================
+   TOAST DINAMICO
+   =============================== */
 .toast {
   position: fixed;
   bottom: 20px; right: 20px;
@@ -124,13 +224,17 @@ button:hover { box-shadow: 0 0 15px rgba(0,168,255,0.5); transform: translateY(-
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.5s ease;
+  font-weight: 500;
+  z-index: 9999;
 }
 .toast.show {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Footer */
+/* ===============================
+   FOOTER
+   =============================== */
 footer {
   background: rgba(30,58,95,0.9);
   color: white;
@@ -139,4 +243,5 @@ footer {
   margin-top: 30px;
   backdrop-filter: blur(10px);
   border-top: 1px solid rgba(255,255,255,0.2);
+  font-size: 0.9rem;
 }
