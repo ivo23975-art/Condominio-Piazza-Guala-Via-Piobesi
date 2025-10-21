@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Amministratore Sito – Condominio Piazza Guala</title>
+  <title>Dashboard Amministratore Sito</title>
   <link rel="stylesheet" href="../css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-
-<body>
-  <header class="dash-header admin-sito">
+<body class="admin-sito">
+  <header class="dash-header">
     <h1><i data-lucide="shield"></i> Dashboard Amministratore Sito</h1>
     <button id="logout">Esci</button>
   </header>
@@ -24,17 +24,21 @@
 
   <main class="dashboard">
     <div class="card">
-      <i data-lucide="activity"></i>
-      <h2>Statistiche del portale</h2>
-      <p>Visualizza l’attività generale del sito.</p>
-      <button>Mostra</button>
+      <h2><i data-lucide="activity"></i> Statistiche</h2>
+      <canvas id="statsChart"></canvas>
     </div>
 
     <div class="card">
-      <i data-lucide="file"></i>
-      <h2>Gestione contenuti</h2>
-      <p>Scrivi o modifica gli avvisi pubblicati.</p>
-      <button>Apri</button>
+      <h2><i data-lucide="file-plus"></i> Documenti</h2>
+      <input type="file" id="uploadFile" multiple />
+      <ul id="fileList"></ul>
+    </div>
+
+    <div class="card wide">
+      <h2><i data-lucide="edit-3"></i> Comunicazioni</h2>
+      <textarea id="newPost" placeholder="Scrivi un nuovo annuncio..."></textarea>
+      <button id="publishBtn">Pubblica</button>
+      <ul id="postList"></ul>
     </div>
   </main>
 
