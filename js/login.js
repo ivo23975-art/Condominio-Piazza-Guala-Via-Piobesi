@@ -6,12 +6,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+
+    const username = document.getElementById("username").value.trim().toLowerCase();
+    const password = document.getElementById("password").value.trim();
+    const role = document.getElementById("role").value;
+
+    const user = users.find(
+      (u) => u.username === username && u.password === password && u.role === role
+    );
+
+    if (!user) {
+      alert("❌ Credenziali o ruolo non validi. Riprova.");
+      return;
+    }
+
     loader.classList.remove("hidden");
 
     setTimeout(() => {
-      const role = document.getElementById("role").value;
+      localStorage.setItem("loggedUser", JSON.stringify(user));
 
-      switch (role) {
+      switch (user.role) {
         case "condomino":
           window.location.href = "./dashboards/dashboard-condomino.html";
           break;
@@ -21,10 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
         case "admin-sito":
           window.location.href = "./dashboards/dashboard-admin-sito.html";
           break;
-        default:
-          alert("Seleziona un ruolo valido!");
-          loader.classList.add("hidden");
       }
-    }, 1000);
+    }, 1200);
   });
 });
+
