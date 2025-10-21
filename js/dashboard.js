@@ -93,6 +93,62 @@ document.querySelectorAll(".card").forEach((card, index) => {
     card.style.transform = "translateY(0)";
   }, 300 * (index + 1));
 });
+// ===== FIX: PUBBLICAZIONE AVVISI + UPLOAD FILE =====
+document.addEventListener("DOMContentLoaded", () => {
+  lucide.createIcons();
+
+  // Gestione contenuti - PUBBLICAZIONE POST
+  const publishBtn = document.getElementById("publishBtn");
+  const postList = document.getElementById("postList");
+  const postInput = document.getElementById("newPost");
+
+  if (publishBtn && postInput && postList) {
+    publishBtn.addEventListener("click", () => {
+      const text = postInput.value.trim();
+      if (!text) {
+        alert("Scrivi qualcosa da pubblicare!");
+        return;
+      }
+
+      const li = document.createElement("li");
+      li.innerHTML = `<i data-lucide="message-square"></i> ${text}`;
+      postList.prepend(li);
+      lucide.createIcons();
+
+      // salva localmente (persistenza)
+      const posts = JSON.parse(localStorage.getItem("posts") || "[]");
+      posts.unshift(text);
+      localStorage.setItem("posts", JSON.stringify(posts));
+
+      postInput.value = "";
+    });
+
+    // Ricarica eventuali post salvati
+    const saved = JSON.parse(localStorage.getItem("posts") || "[]");
+    saved.forEach(text => {
+      const li = document.createElement("li");
+      li.innerHTML = `<i data-lucide="message-square"></i> ${text}`;
+      postList.appendChild(li);
+    });
+  }
+
+  // Upload simulato documenti
+  const uploadInput = document.getElementById("uploadFile");
+  const fileList = document.getElementById("fileList");
+
+  if (uploadInput && fileList) {
+    uploadInput.addEventListener("change", e => {
+      fileList.innerHTML = ""; // reset
+      [...e.target.files].forEach(file => {
+        const li = document.createElement("li");
+        li.innerHTML = `<i data-lucide="file"></i> ${file.name} <span style="color:#00a8ff;">(caricato con successo)</span>`;
+        fileList.appendChild(li);
+      });
+      lucide.createIcons();
+    });
+  }
+});
+
 
 
 
