@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Condòmino – Condominio Piazza Guala</title>
+  <title>Dashboard Amministratore Condominio – Condominio Piazza Guala</title>
   <link rel="stylesheet" href="../css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
-  <header class="dash-header">
-    <h1><i data-lucide="user"></i> Area Condòmino</h1>
+  <header class="dash-header admin-condominio">
+    <h1><i data-lucide="settings"></i> Dashboard Amministratore Condominio</h1>
     <button id="logout">Esci</button>
   </header>
 
@@ -24,24 +25,22 @@
 
   <main class="dashboard">
     <div class="card">
-      <i data-lucide="file-text"></i>
-      <h2>Documenti condominiali</h2>
-      <p>Consulta bilanci, verbali e comunicazioni.</p>
+      <i data-lucide="users"></i>
+      <h2>Gestione Condòmini</h2>
+      <p>Visualizza e modifica i dati dei condòmini.</p>
       <button>Apri</button>
     </div>
 
     <div class="card">
-      <i data-lucide="message-square"></i>
-      <h2>Comunicazioni</h2>
-      <p>Visualizza le ultime notizie dal condominio.</p>
-      <button>Leggi</button>
+      <i data-lucide="file-text"></i>
+      <h2>Documenti</h2>
+      <p>Carica verbali, bilanci e comunicazioni.</p>
+      <button>Gestisci</button>
     </div>
 
-    <div class="card">
-      <i data-lucide="wrench"></i>
-      <h2>Manutenzioni</h2>
-      <p>Segnala o consulta interventi programmati.</p>
-      <button>Segnala</button>
+    <div class="card wide">
+      <h2>Andamento spese condominiali</h2>
+      <canvas id="spese-chart"></canvas>
     </div>
   </main>
 
