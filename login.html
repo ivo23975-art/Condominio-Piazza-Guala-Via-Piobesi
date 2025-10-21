@@ -7,12 +7,13 @@
   <link rel="stylesheet" href="./css/login.css">
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
   <div class="login-container glass">
     <div class="login-header">
       <i data-lucide="home"></i>
       <h1>Condominio Piazza Guala</h1>
-      <p>Accesso sicuro al portale</p>
+      <p>Accesso sicuro al portale condominiale</p>
     </div>
 
     <form id="loginForm">
@@ -33,11 +34,14 @@
       <button type="submit" id="loginBtn">Accedi</button>
     </form>
 
+    <!-- Loader -->
     <div id="loader" class="loader-overlay hidden">
       <div class="loader"></div>
     </div>
   </div>
 
+  <!-- Script autenticazione -->
+  <script src="./js/users.js"></script>
   <script src="./js/login.js"></script>
 </body>
 </html>
