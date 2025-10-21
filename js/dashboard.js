@@ -1,14 +1,17 @@
 // ===============================
-// ✅ DASHBOARD UNIFICATA FUNZIONANTE
+// ✅ DASHBOARD UNIFICATA - VERSIONE STABILE
 // ===============================
 
+// Controllo caricamento
 console.log("🔥 dashboard.js caricato correttamente");
 
+// Tutto parte solo quando la pagina è pronta
 document.addEventListener("DOMContentLoaded", () => {
+
   // ===============================
-  // 🔹 ICONS E NAVIGAZIONE BASE
+  // 🔹 ICONS & NAVIGAZIONE
   // ===============================
-  lucide.createIcons();
+  if (typeof lucide !== "undefined") lucide.createIcons();
 
   const logoutBtn = document.getElementById("logout");
   if (logoutBtn) logoutBtn.addEventListener("click", () => window.location.href = "../login.html");
@@ -16,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const exitBtn = document.getElementById("exit-button");
   if (exitBtn) exitBtn.addEventListener("click", () => window.location.href = "../login.html");
 
-  // Breadcrumb dinamico
+  // ===== BREADCRUMB DINAMICO =====
   const path = window.location.pathname;
   let pageName = "Dashboard";
   if (path.includes("condomino")) pageName = "Area Condòmino";
@@ -26,11 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (breadcrumb) breadcrumb.innerHTML = `/ ${pageName}`;
 
   // ===============================
-  // 🔹 GRAFICO STATISTICHE (solo admin-sito)
+  // 🔹 GRAFICO STATISTICHE (solo per admin-sito)
   // ===============================
-  const statsCanvas = document.getElementById("statsChart");
-  if (statsCanvas && typeof Chart !== "undefined") {
-    new Chart(statsCanvas, {
+  const statsChart = document.getElementById("statsChart");
+  if (statsChart && typeof Chart !== "undefined") {
+    new Chart(statsChart, {
       type: "line",
       data: {
         labels: ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"],
@@ -54,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ===============================
-  // 🔹 BACKUP SIMULATO
+  // 🔹 BACKUP SIMULATO (solo per admin-sito)
   // ===============================
   const backupBtn = document.getElementById("backupBtn");
   const progress = document.querySelector(".progress");
@@ -62,16 +65,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (backupBtn && progress && backupStatus) {
     backupBtn.addEventListener("click", () => {
-      let progressValue = 0;
+      let val = 0;
       backupBtn.disabled = true;
       backupStatus.textContent = "🔄 Backup in corso...";
       progress.style.width = "0%";
 
-      const interval = setInterval(() => {
-        progressValue += 5;
-        progress.style.width = progressValue + "%";
-        if (progressValue >= 100) {
-          clearInterval(interval);
+      const timer = setInterval(() => {
+        val += 5;
+        progress.style.width = val + "%";
+        if (val >= 100) {
+          clearInterval(timer);
           backupStatus.textContent = "✅ Backup completato con successo!";
           backupBtn.disabled = false;
         }
@@ -80,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ===============================
-  // 🔹 PUBBLICAZIONE CONTENUTI
+  // 🔹 PUBBLICAZIONE CONTENUTI (per admin-sito)
   // ===============================
   const publishBtn = document.getElementById("publishBtn");
   const newPost = document.getElementById("newPost");
@@ -105,12 +108,12 @@ document.addEventListener("DOMContentLoaded", () => {
       li.style.padding = "8px";
       li.style.borderBottom = "1px solid rgba(0,0,0,0.1)";
       postList.prepend(li);
-      lucide.createIcons();
+      if (typeof lucide !== "undefined") lucide.createIcons();
     }
   }
 
   // ===============================
-  // 🔹 UPLOAD FILE
+  // 🔹 UPLOAD FILE (per admin-sito)
   // ===============================
   const uploadInput = document.getElementById("uploadFile");
   const fileList = document.getElementById("fileList");
@@ -124,9 +127,9 @@ document.addEventListener("DOMContentLoaded", () => {
         li.style.padding = "6px";
         fileList.appendChild(li);
       });
-      lucide.createIcons();
+      if (typeof lucide !== "undefined") lucide.createIcons();
     });
   }
 
-  console.log("✅ Tutte le funzioni operative");
+  console.log("✅ dashboard.js attivo e funzionante su:", pageName);
 });
