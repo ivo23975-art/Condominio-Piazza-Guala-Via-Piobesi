@@ -3,17 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Condòmino – Condominio Piazza Guala</title>
+  <title>Dashboard Condòmino</title>
   <link rel="stylesheet" href="../css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body>
+<body class="condomino">
   <header class="dash-header">
-    <h1><i data-lucide="user"></i> Area Condòmino</h1>
+    <h1><i data-lucide="user"></i> Area Personale Condòmino</h1>
     <button id="logout">Esci</button>
   </header>
 
+  <!-- NAVIGAZIONE -->
   <nav class="breadcrumb-bar">
     <div class="breadcrumb-left">
       <a href="../index.html" class="home-link">🏠 Home</a>
@@ -23,26 +25,33 @@
   </nav>
 
   <main class="dashboard">
+
+    <!-- Documenti Personali -->
     <div class="card">
-      <i data-lucide="file-text"></i>
-      <h2>Documenti condominiali</h2>
-      <p>Consulta bilanci, verbali e comunicazioni.</p>
-      <button>Apri</button>
+      <h2><i data-lucide="file-text"></i> Documenti Condominiali</h2>
+      <p>Scarica i tuoi verbali, comunicazioni e bollette.</p>
+      <button onclick="showToast('📁 Download simulato dei documenti')">Visualizza Documenti</button>
     </div>
 
-    <div class="card">
-      <i data-lucide="message-square"></i>
-      <h2>Comunicazioni</h2>
-      <p>Visualizza le ultime notizie dal condominio.</p>
-      <button>Leggi</button>
+    <!-- Comunicazioni -->
+    <div class="card wide">
+      <h2><i data-lucide="message-square"></i> Bacheca Condominiale</h2>
+      <ul id="postList"></ul>
     </div>
 
+    <!-- Segnalazioni -->
     <div class="card">
-      <i data-lucide="wrench"></i>
-      <h2>Manutenzioni</h2>
-      <p>Segnala o consulta interventi programmati.</p>
-      <button>Segnala</button>
+      <h2><i data-lucide="alert-triangle"></i> Segnala un problema</h2>
+      <textarea id="newPost" placeholder="Scrivi una segnalazione..."></textarea>
+      <button id="publishBtn">Invia Segnalazione</button>
     </div>
+
+    <!-- Statistiche Spese -->
+    <div class="card">
+      <h2><i data-lucide="pie-chart"></i> Ripartizione Spese</h2>
+      <canvas id="statsChart"></canvas>
+    </div>
+
   </main>
 
   <footer>
