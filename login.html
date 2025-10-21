@@ -3,35 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accesso Condominio Piazza Guala – Via Piobesi</title>
-  <link rel="stylesheet" href="css/login.css">
+  <title>Accesso Portale Condominiale</title>
+  <link rel="stylesheet" href="./css/login.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-  <div class="login-container">
-    <h1>🔐 Accesso al portale</h1>
-    <p>Seleziona la modalità di accesso e inserisci le tue credenziali</p>
+  <div class="login-container glass">
+    <div class="login-header">
+      <i data-lucide="home"></i>
+      <h1>Condominio Piazza Guala</h1>
+      <p>Accesso sicuro al portale</p>
+    </div>
 
-    <form id="login-form">
-      <label for="login-type">Tipo di accesso</label>
-      <select id="login-type" required>
-        <option value="">-- Seleziona --</option>
+    <form id="loginForm">
+      <label for="username">Utente</label>
+      <input type="text" id="username" placeholder="Inserisci il tuo nome utente" required>
+
+      <label for="role">Ruolo</label>
+      <select id="role" required>
+        <option value="">Seleziona ruolo</option>
         <option value="condomino">Condòmino</option>
         <option value="admin-condominio">Amministratore Condominio</option>
         <option value="admin-sito">Amministratore Sito</option>
       </select>
 
-      <label for="username">Nome e Cognome o ID</label>
-      <input type="text" id="username" placeholder="Mario Rossi o ID123" required>
-
       <label for="password">Password</label>
-      <input type="password" id="password" placeholder="Inserisci la password" required>
+      <input type="password" id="password" placeholder="••••••••" required>
 
-      <button type="submit" class="btn-login">Accedi</button>
+      <button type="submit" id="loginBtn">Accedi</button>
     </form>
 
-    <p class="note">© 2025 Condominio Piazza Guala – Via Piobesi</p>
+    <div id="loader" class="loader-overlay hidden">
+      <div class="loader"></div>
+    </div>
   </div>
 
-  <script src="js/login.js"></script>
+  <script src="./js/login.js"></script>
 </body>
 </html>
