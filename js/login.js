@@ -1,39 +1,30 @@
-document.getElementById("login-form").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const tipo = document.getElementById("login-type").value;
-  const user = document.getElementById("username").value.trim();
-  const pass = document.getElementById("password").value.trim();
+document.addEventListener("DOMContentLoaded", () => {
+  lucide.createIcons();
 
-  if (user === "" || pass === "" || tipo === "") {
-    alert("Compila tutti i campi per accedere.");
-    return;
-  }
+  const form = document.getElementById("loginForm");
+  const loader = document.getElementById("loader");
 
-  // Simulazione login base (in futuro: backend o JSON)
-  switch (tipo) {
-    case "condomino":
-      window.location.href = "dashboards/dashboard-condomino.html";
-      break;
-    case "admin-condominio":
-      window.location.href = "dashboards/dashboard-admin-condominio.html";
-      break;
-    case "admin-sito":
-      window.location.href = "dashboards/dashboard-admin-sito.html";
-      break;
-  }
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    loader.classList.remove("hidden");
+
+    setTimeout(() => {
+      const role = document.getElementById("role").value;
+
+      switch (role) {
+        case "condomino":
+          window.location.href = "./dashboards/dashboard-condomino.html";
+          break;
+        case "admin-condominio":
+          window.location.href = "./dashboards/dashboard-admin-condominio.html";
+          break;
+        case "admin-sito":
+          window.location.href = "./dashboards/dashboard-admin-sito.html";
+          break;
+        default:
+          alert("Seleziona un ruolo valido!");
+          loader.classList.add("hidden");
+      }
+    }, 1000);
+  });
 });
-// Effetto luce pulsante
-document.querySelector(".btn-login").addEventListener("click", (e) => {
-  const btn = e.target;
-  btn.classList.add("pulse");
-  setTimeout(() => btn.classList.remove("pulse"), 800);
-});
-// Mostra mini loader prima del reindirizzamento
-const loader = document.createElement("div");
-loader.className = "login-loader";
-loader.innerHTML = '<div class="spinner"></div>';
-document.body.appendChild(loader);
-
-// Rimuovi il loader dopo pochi secondi
-setTimeout(() => loader.classList.add("hide"), 1500);
-setTimeout(() => loader.remove(), 2500);
