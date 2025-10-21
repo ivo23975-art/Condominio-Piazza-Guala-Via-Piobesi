@@ -3,51 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Area Condòmino – Condominio Piazza Guala – Via Piobesi</title>
+  <title>Dashboard Condòmino – Condominio Piazza Guala</title>
   <link rel="stylesheet" href="../css/dashboard.css">
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
   <header class="dash-header">
-    <h1><i data-lucide="home"></i> Area Condòmino</h1>
+    <h1><i data-lucide="user"></i> Area Condòmino</h1>
     <button id="logout">Esci</button>
   </header>
-<!-- NAVIGAZIONE E BREADCRUMB -->
-<nav class="breadcrumb-bar">
-  <div class="breadcrumb-left">
-    <a href="../index.html" class="home-link">🏠 Home</a>
-    <span id="breadcrumb-path"></span>
-  </div>
-  <button id="exit-button">🔑 Esci</button>
-</nav>
+
+  <nav class="breadcrumb-bar">
+    <div class="breadcrumb-left">
+      <a href="../index.html" class="home-link">🏠 Home</a>
+      <span id="breadcrumb-path"></span>
+    </div>
+    <button id="exit-button">🔑 Esci</button>
+  </nav>
 
   <main class="dashboard">
-    <div class="card" id="avvisi">
-      <i data-lucide="bell"></i>
-      <h2>Avvisi recenti</h2>
-      <p>Consulta le ultime comunicazioni condominiali.</p>
-      <button>Visualizza</button>
+    <div class="card">
+      <i data-lucide="file-text"></i>
+      <h2>Documenti condominiali</h2>
+      <p>Consulta bilanci, verbali e comunicazioni.</p>
+      <button>Apri</button>
     </div>
 
-    <div class="card" id="documenti">
-      <i data-lucide="folder-open"></i>
-      <h2>Documenti</h2>
-      <p>Scarica verbali, bilanci e regolamenti.</p>
-      <button>Apri archivio</button>
-    </div>
-
-    <div class="card" id="quote">
-      <i data-lucide="credit-card"></i>
-      <h2>Situazione quote</h2>
-      <p>Controlla lo stato dei tuoi pagamenti.</p>
-      <button>Visualizza</button>
-    </div>
-
-    <div class="card" id="contatti">
+    <div class="card">
       <i data-lucide="message-square"></i>
-      <h2>Contatta l’amministratore</h2>
-      <p>Invia messaggi o segnalazioni direttamente online.</p>
-      <button>Scrivi ora</button>
+      <h2>Comunicazioni</h2>
+      <p>Visualizza le ultime notizie dal condominio.</p>
+      <button>Leggi</button>
+    </div>
+
+    <div class="card">
+      <i data-lucide="wrench"></i>
+      <h2>Manutenzioni</h2>
+      <p>Segnala o consulta interventi programmati.</p>
+      <button>Segnala</button>
     </div>
   </main>
 
@@ -58,4 +52,3 @@
   <script src="../js/dashboard.js"></script>
 </body>
 </html>
-
