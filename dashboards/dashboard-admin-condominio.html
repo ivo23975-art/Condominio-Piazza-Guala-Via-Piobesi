@@ -3,192 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Amministratore Condominio</title>
-
-  <!-- Librerie -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Dashboard Condòmino – Condominio Piazza Guala</title>
+  <link rel="stylesheet" href="../css/dashboard.css">
   <script src="https://unpkg.com/lucide@latest"></script>
-
-  <!-- CSS interno -->
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f6f8fa;
-      color: #333;
-    }
-
-    header {
-      background-color: #1e88e5;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header h1 {
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    header button {
-      background-color: white;
-      color: #1e88e5;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    nav.breadcrumb-bar {
-      background: #e3f2fd;
-      padding: 0.5rem 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .dashboard {
-      padding: 2rem;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      padding: 1.5rem;
-      text-align: center;
-      transition: transform 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-    }
-
-    .card i {
-      width: 32px;
-      height: 32px;
-      color: #1e88e5;
-      margin-bottom: 0.5rem;
-    }
-
-    .card button {
-      margin-top: 1rem;
-      background-color: #1e88e5;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-    }
-
-    .chart-section {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: #1e88e5;
-      color: white;
-      margin-top: 2rem;
-    }
-  </style>
 </head>
 
 <body>
-  <header>
-    <h1><i data-lucide="settings"></i> Dashboard Amministratore</h1>
-    <button id="logout">🔑 Esci</button>
+  <header class="dash-header">
+    <h1><i data-lucide="user"></i> Area Condòmino</h1>
+    <button id="logout">Esci</button>
   </header>
 
   <nav class="breadcrumb-bar">
-    <div>
-      <a href="#" class="home-link">🏠 Home</a> / <span>Pannello Amministratore</span>
+    <div class="breadcrumb-left">
+      <a href="../index.html" class="home-link">🏠 Home</a>
+      <span id="breadcrumb-path"></span>
     </div>
+    <button id="exit-button">🔑 Esci</button>
   </nav>
 
   <main class="dashboard">
-    <section class="cards">
-      <div class="card">
-        <i data-lucide="users"></i>
-        <h2>Gestione Condòmini</h2>
-        <p>Aggiungi, modifica o visualizza i condomini.</p>
-        <button>Vai</button>
-      </div>
+    <div class="card">
+      <i data-lucide="file-text"></i>
+      <h2>Documenti condominiali</h2>
+      <p>Consulta bilanci, verbali e comunicazioni.</p>
+      <button>Apri</button>
+    </div>
 
-      <div class="card">
-        <i data-lucide="file-text"></i>
-        <h2>Documenti</h2>
-        <p>Carica verbali, bilanci e comunicazioni.</p>
-        <button>Apri</button>
-      </div>
+    <div class="card">
+      <i data-lucide="message-square"></i>
+      <h2>Comunicazioni</h2>
+      <p>Visualizza le ultime notizie dal condominio.</p>
+      <button>Leggi</button>
+    </div>
 
-      <div class="card">
-        <i data-lucide="bell-ring"></i>
-        <h2>Comunicazioni</h2>
-        <p>Invia notifiche ai condomini.</p>
-        <button>Invia</button>
-      </div>
-    </section>
-
-    <section class="chart-section">
-      <h2>Spese condominiali – Ultimo anno</h2>
-      <canvas id="spese-chart" height="120"></canvas>
-    </section>
+    <div class="card">
+      <i data-lucide="wrench"></i>
+      <h2>Manutenzioni</h2>
+      <p>Segnala o consulta interventi programmati.</p>
+      <button>Segnala</button>
+    </div>
   </main>
 
   <footer>
     <p>&copy; 2025 Condominio Piazza Guala – Via Piobesi</p>
   </footer>
 
-  <script>
-    // Inizializza icone
-    lucide.createIcons();
-
-    // Grafico Chart.js
-    const ctx = document.getElementById('spese-chart');
-    if (ctx) {
-      new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          labels: ['Manutenzione', 'Pulizie', 'Portineria', 'Sicurezza'],
-          datasets: [{
-            label: 'Spese (%)',
-            data: [40, 25, 20, 15],
-            backgroundColor: ['#3e95cd','#8e5ea2','#3cba9f','#e8c3b9']
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: { position: 'bottom' }
-          }
-        }
-      });
-    }
-
-    // Pulsante logout
-    document.getElementById('logout').addEventListener('click', () => {
-      alert('Disconnessione effettuata');
-      window.location.href = "#";
-    });
-  </script>
+  <script src="../js/dashboard.js"></script>
 </body>
 </html>
