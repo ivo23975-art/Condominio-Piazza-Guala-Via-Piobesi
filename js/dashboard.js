@@ -25,5 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => loader.classList.add("hidden"), 800);
   setTimeout(() => loader.remove(), 1600);
 
+  // ✅ Rende visibile la pagina dopo il caricamento
+  window.addEventListener("load", () => {
+    document.body.classList.add("loaded");
+  });
+
   console.log("✅ Dashboard funzionante");
 });
