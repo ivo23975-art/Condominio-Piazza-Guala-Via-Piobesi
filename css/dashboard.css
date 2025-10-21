@@ -1,196 +1,114 @@
-/* ===============================
-   🌈 DASHBOARD WOW - STILE 2025
-   =============================== */
 :root {
   --primary: #1e3a5f;
   --accent: #00a8ff;
-  --bg: linear-gradient(145deg, #f0f6ff, #dce6f9);
-  --text: #333;
+  --bg1: #f5f8fc;
+  --bg2: #e9f1fa;
+  --text: #1e3a5f;
 }
 
-/* ===============================
-   BASE E ANIMAZIONE DI PAGINA
-   =============================== */
+/* ==============================
+   BODY E STRUTTURA BASE
+============================== */
 body {
   font-family: "Poppins", sans-serif;
+  background: linear-gradient(145deg, var(--bg1), var(--bg2));
   margin: 0;
   padding: 0;
   color: var(--text);
-  background: var(--bg);
-  background-attachment: fixed;
-  transition: opacity 0.6s ease, background 2s ease;
   opacity: 0;
+  transition: opacity 0.8s ease;
 }
 body.loaded { opacity: 1; }
 
-/* ===============================
-   HEADER
-   =============================== */
+main.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 30px;
+}
+
+/* ==============================
+   HEADER E BREADCRUMB
+============================== */
 .dash-header {
-  background: linear-gradient(90deg, #1e3a5f, #0074d9);
-  color: white;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  color: #fff;
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 .dash-header h1 {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 1.3rem;
 }
-
-/* ===============================
-   SIDEBAR ADMIN
-   =============================== */
-.sidebar {
-  position: fixed;
-  top: 0; left: 0;
-  width: 70px; height: 100vh;
-  background: rgba(30,58,95,0.95);
-  backdrop-filter: blur(10px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-  padding-top: 20px;
-  transition: width 0.3s ease;
-  overflow: hidden;
-  z-index: 999;
-  box-shadow: 4px 0 10px rgba(0,0,0,0.3);
-}
-.sidebar:hover { width: 200px; }
-.sidebar i {
+button#logout, button#exit-button {
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 15px;
   color: white;
+  font-weight: bold;
   cursor: pointer;
-  transition: transform 0.2s ease, color 0.3s ease;
+  transition: all 0.3s ease;
 }
-.sidebar i:hover {
-  transform: scale(1.2);
-  color: var(--accent);
+button:hover {
+  background: #0074d9;
+  transform: translateY(-2px);
 }
 
-/* ===============================
-   BREADCRUMB / NAVBAR
-   =============================== */
 .breadcrumb-bar {
   background: linear-gradient(90deg, #1e3a5f, #0074d9);
-  color: white;
+  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  font-size: 0.95rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 .home-link {
   color: white;
   text-decoration: none;
   font-weight: bold;
 }
-.home-link:hover { text-decoration: underline; }
+.home-link:hover { opacity: 0.8; }
 
-/* ===============================
-   DASHBOARD GRID
-   =============================== */
-.dashboard {
-  margin-left: 80px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-  padding: 30px;
-}
-
-/* ===============================
-   CARD - VETRO 3D EFFETTO
-   =============================== */
+/* ==============================
+   CARD ELEMENTI
+============================== */
 .card {
-  background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.9);
   border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   padding: 20px;
   text-align: center;
-  backdrop-filter: blur(10px);
-  transition: transform 0.4s ease, box-shadow 0.3s ease;
-  animation: elevate 0.8s ease forwards;
-  transform: translateY(10px);
-  opacity: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(8px);
 }
 .card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-}
-@keyframes elevate {
-  from { transform: translateY(10px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
 }
 
-/* Card larga */
-.card.wide { grid-column: span 2; }
-
-/* ===============================
-   BOTTONI ANIMATI
-   =============================== */
-button {
-  background: linear-gradient(90deg, #00a8ff, #0074d9);
-  border: none;
-  padding: 10px 20px;
-  border-radius: 10px;
+/* ==============================
+   FOOTER
+============================== */
+footer {
+  background: rgba(30,58,95,0.9);
   color: white;
-  font-weight: bold;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-button:hover {
-  box-shadow: 0 0 15px rgba(0,168,255,0.5);
-  transform: translateY(-3px);
-}
-button:active { transform: scale(0.96); }
-
-/* ===============================
-   TEXTAREA E INPUT
-   =============================== */
-textarea, input[type="file"] {
-  width: 100%;
-  border-radius: 10px;
-  border: none;
-  padding: 10px;
-  margin-top: 8px;
-  font-family: inherit;
-  font-size: 1rem;
-  background: rgba(255,255,255,0.8);
-}
-textarea { height: 90px; resize: none; }
-
-/* ===============================
-   LISTE DI POST E FILE
-   =============================== */
-#postList, #fileList {
-  list-style: none;
-  padding: 0;
-  margin-top: 15px;
-}
-#postList li, #fileList li {
-  background: rgba(255,255,255,0.08);
-  border-radius: 8px;
-  padding: 8px 12px;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #1e3a5f;
-  font-weight: 500;
+  text-align: center;
+  padding: 15px;
+  margin-top: 30px;
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255,255,255,0.2);
 }
 
-/* ===============================
+/* ==============================
    LOADER ANIMATO
-   =============================== */
+============================== */
 .loader-overlay {
   position: fixed;
   top: 0; left: 0;
@@ -209,39 +127,3 @@ textarea { height: 90px; resize: none; }
   animation: spin 1s linear infinite;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
-
-/* ===============================
-   TOAST DINAMICO
-   =============================== */
-.toast {
-  position: fixed;
-  bottom: 20px; right: 20px;
-  background: rgba(0,168,255,0.9);
-  color: white;
-  padding: 12px 20px;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.5s ease;
-  font-weight: 500;
-  z-index: 9999;
-}
-.toast.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ===============================
-   FOOTER
-   =============================== */
-footer {
-  background: rgba(30,58,95,0.9);
-  color: white;
-  text-align: center;
-  padding: 15px;
-  margin-top: 30px;
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255,255,255,0.2);
-  font-size: 0.9rem;
-}
