@@ -148,6 +148,65 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+// ===============================
+// ✅ FIX: Pubblicazione avvisi e caricamento file
+// ===============================
+document.addEventListener("DOMContentLoaded", () => {
+  lucide.createIcons();
+
+  // === GESTIONE CONTENUTI E COMUNICAZIONI ===
+  const publishBtn = document.getElementById("publishBtn");
+  const postList = document.getElementById("postList");
+  const newPost = document.getElementById("newPost");
+
+  if (publishBtn && postList && newPost) {
+    // Carica post salvati in locale
+    const savedPosts = JSON.parse(localStorage.getItem("posts") || "[]");
+    savedPosts.forEach(text => addPost(text));
+
+    publishBtn.addEventListener("click", () => {
+      const text = newPost.value.trim();
+      if (!text) return alert("Scrivi un messaggio prima di pubblicare!");
+
+      addPost(text);
+
+      // Salvataggio locale
+      savedPosts.unshift(text);
+      localStorage.setItem("posts", JSON.stringify(savedPosts));
+
+      newPost.value = "";
+    });
+
+    function addPost(text) {
+      const li = document.createElement("li");
+      li.innerHTML = `<i data-lucide="message-square"></i> ${text}`;
+      li.style.padding = "8px";
+      li.style.borderBottom = "1px solid rgba(0,0,0,0.1)";
+      postList.prepend(li);
+      lucide.createIcons();
+    }
+  }
+
+  // === UPLOAD FILE ===
+  const uploadInput = document.getElementById("uploadFile");
+  const fileList = document.getElementById("fileList");
+
+  if (uploadInput && fileList) {
+    uploadInput.addEventListener("change", (e) => {
+      fileList.innerHTML = ""; // reset elenco
+
+      Array.from(e.target.files).forEach(file => {
+        const li = document.createElement("li");
+        li.innerHTML = `<i data-lucide="file"></i> ${file.name} <span style="color:#00a8ff;">(caricato con successo)</span>`;
+        li.style.padding = "6px";
+        fileList.appendChild(li);
+      });
+
+      lucide.createIcons();
+    });
+  }
+});
+
 
 
 
