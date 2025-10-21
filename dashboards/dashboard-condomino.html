@@ -1,3 +1,17 @@
+// ==============================
+// 🧠 CONTROLLO LOGIN
+// ==============================
+document.addEventListener("DOMContentLoaded", () => {
+  const loggedUser = JSON.parse(localStorage.getItem("loggedUser") || "null");
+
+  if (!loggedUser) {
+    window.location.href = "../login.html";
+    return;
+  }
+
+  console.log(`👤 Utente autenticato: ${loggedUser.username} (${loggedUser.role})`);
+});
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
