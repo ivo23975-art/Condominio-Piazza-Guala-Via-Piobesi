@@ -1,35 +1,19 @@
-// ==============================
-// 🧠 CONTROLLO LOGIN
-// ==============================
-document.addEventListener("DOMContentLoaded", () => {
-  const loggedUser = JSON.parse(localStorage.getItem("loggedUser") || "null");
-
-  if (!loggedUser) {
-    window.location.href = "../login.html";
-    return;
-  }
-
-  console.log(`👤 Utente autenticato: ${loggedUser.username} (${loggedUser.role})`);
-});
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Amministratore Condominio</title>
-  <link rel="stylesheet" href="../css/dashboard.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Amministratore Condominio – Condominio Piazza Guala</title>
+  <link rel="stylesheet" href="../css/dashboard.css" />
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body class="admin-condominio">
   <header class="dash-header">
-    <h1><i data-lucide="settings"></i> Dashboard Amministratore Condominio</h1>
+    <h1><i data-lucide="user-cog"></i> Amministratore Condominio</h1>
     <button id="logout">Esci</button>
   </header>
 
-  <!-- NAVIGAZIONE -->
   <nav class="breadcrumb-bar">
     <div class="breadcrumb-left">
       <a href="../index.html" class="home-link">🏠 Home</a>
@@ -39,36 +23,25 @@ document.addEventListener("DOMContentLoaded", () => {
   </nav>
 
   <main class="dashboard">
-
-    <!-- Gestione Condòmini -->
     <div class="card">
       <h2><i data-lucide="users"></i> Gestione Condòmini</h2>
-      <p>Visualizza o modifica i dati dei residenti.</p>
-      <button onclick="showToast('👥 Modulo gestione condòmini in sviluppo')">Apri sezione</button>
+      <p>Visualizza e aggiorna le informazioni dei residenti.</p>
     </div>
 
-    <!-- Documenti -->
     <div class="card">
-      <h2><i data-lucide="file-plus"></i> Documenti</h2>
-      <p>Carica verbali, bilanci e comunicazioni ufficiali.</p>
-      <input type="file" id="uploadFile" multiple />
-      <ul id="fileList"></ul>
+      <h2><i data-lucide="clipboard-list"></i> Spese e Bilanci</h2>
+      <p>Consulta le spese e lo stato dei pagamenti condominiali.</p>
     </div>
 
-    <!-- Comunicazioni -->
-    <div class="card wide">
-      <h2><i data-lucide="edit-3"></i> Comunicazioni ai Condòmini</h2>
-      <textarea id="newPost" placeholder="Scrivi una nuova comunicazione..."></textarea>
-      <button id="publishBtn">Pubblica</button>
-      <ul id="postList"></ul>
+    <div class="card">
+      <h2><i data-lucide="megaphone"></i> Comunicazioni ufficiali</h2>
+      <p>Pubblica avvisi visibili a tutti i condòmini.</p>
     </div>
 
-    <!-- Statistiche -->
-    <div class="card wide">
-      <h2><i data-lucide="bar-chart-3"></i> Statistiche di gestione</h2>
-      <canvas id="statsChart"></canvas>
+    <div class="card">
+      <h2><i data-lucide="alert-circle"></i> Segnalazioni ricevute</h2>
+      <p>Controlla le segnalazioni provenienti dai residenti.</p>
     </div>
-
   </main>
 
   <footer>
