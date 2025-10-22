@@ -1,30 +1,17 @@
-// ==============================
-// 🧠 CONTROLLO LOGIN
-// ==============================
-document.addEventListener("DOMContentLoaded", () => {
-  const loggedUser = JSON.parse(localStorage.getItem("loggedUser") || "null");
-
-  if (!loggedUser) {
-    window.location.href = "../login.html";
-    return;
-  }
-
-  console.log(`👤 Utente autenticato: ${loggedUser.username} (${loggedUser.role})`);
-});
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Amministratore Sito</title>
-  <link rel="stylesheet" href="../css/dashboard.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Amministratore Sito – Condominio Piazza Guala</title>
+  <link rel="stylesheet" href="../css/dashboard.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body class="admin-sito">
   <header class="dash-header">
-    <h1><i data-lucide="shield"></i> Dashboard Amministratore Sito</h1>
+    <h1><i data-lucide="shield"></i> Amministratore Sito</h1>
     <button id="logout">Esci</button>
   </header>
 
@@ -37,22 +24,27 @@ document.addEventListener("DOMContentLoaded", () => {
   </nav>
 
   <main class="dashboard">
-    <div class="card">
-      <h2><i data-lucide="activity"></i> Statistiche</h2>
+    <div class="card wide">
+      <h2><i data-lucide="activity"></i> Statistiche Portale</h2>
       <canvas id="statsChart"></canvas>
     </div>
 
     <div class="card">
-      <h2><i data-lucide="file-plus"></i> Documenti</h2>
-      <input type="file" id="uploadFile" multiple />
-      <ul id="fileList"></ul>
+      <h2><i data-lucide="database"></i> Backup del Sito</h2>
+      <p>Esegui un backup completo dei dati e dei file.</p>
+      <button id="backupBtn">Avvia backup</button>
+      <div id="backupProgress" class="progress-bar"><div class="progress"></div></div>
+      <p id="backupStatus" class="status"></p>
     </div>
 
-    <div class="card wide">
-      <h2><i data-lucide="edit-3"></i> Comunicazioni</h2>
-      <textarea id="newPost" placeholder="Scrivi un nuovo annuncio..."></textarea>
-      <button id="publishBtn">Pubblica</button>
-      <ul id="postList"></ul>
+    <div class="card">
+      <h2><i data-lucide="lock"></i> Sicurezza</h2>
+      <p>Monitoraggio in tempo reale dello stato del sistema.</p>
+      <div class="security-status">
+        <div class="status-box green">🟢 Sistema protetto</div>
+        <div class="status-box yellow">🟡 Firewall in aggiornamento</div>
+        <div class="status-box red">🔴 Nessuna minaccia rilevata</div>
+      </div>
     </div>
   </main>
 
