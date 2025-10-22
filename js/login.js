@@ -7,36 +7,36 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const username = document.getElementById("username").value.trim().toLowerCase();
+    const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();
     const role = document.getElementById("role").value;
 
-    const user = users.find(
-      (u) => u.username === username && u.password === password && u.role === role
-    );
-
-    if (!user) {
-      alert("❌ Credenziali o ruolo non validi. Riprova.");
-      return;
-    }
-
+    // Mostra loader
     loader.classList.remove("hidden");
 
     setTimeout(() => {
-      localStorage.setItem("loggedUser", JSON.stringify(user));
+      loader.classList.add("hidden");
 
-      switch (user.role) {
-        case "condomino":
-          window.location.href = "./dashboards/dashboard-condomino.html";
-          break;
-        case "admin-condominio":
-          window.location.href = "./dashboards/dashboard-admin-condominio.html";
-          break;
-        case "admin-sito":
-          window.location.href = "./dashboards/dashboard-admin-sito.html";
-          break;
+      // Controllo credenziali
+      let redirect = "";
+      if (username === "condomino1" && password === "condominio123" && role === "condomino") {
+        redirect = "dashboards/dashboard-condomino.html";
+      } 
+      else if (username === "admincondominio" && password === "gestione2025" && role === "admin-condominio") {
+        redirect = "dashboards/dashboard-admin-condominio.html";
+      } 
+      else if (username === "adminsito" && password === "webcontrol2025" && role === "admin-sito") {
+        redirect = "dashboards/dashboard-admin-sito.html";
+      } 
+      else {
+        alert("❌ Credenziali non valide. Controlla utente, ruolo e password.");
+        return;
       }
-    }, 1200);
+
+      // Salva sessione
+      localStorage.setItem("loggedUser", JSON.stringify({ username, role }));
+      window.location.href = redirect;
+    }, 800);
   });
 });
 
