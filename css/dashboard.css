@@ -1,101 +1,201 @@
 :root {
   --primary: #1e3a5f;
   --accent: #00a8ff;
-  --bg1: #f5f8fc;
-  --bg2: #e9f1fa;
+  --bg: linear-gradient(145deg, #f5f8fc, #e9f1fa);
   --text: #1e3a5f;
 }
 
-/* ==============================
-   BODY E STRUTTURA BASE
-============================== */
+/* Corpo pagina */
 body {
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(145deg, var(--bg1), var(--bg2));
   margin: 0;
   padding: 0;
   color: var(--text);
+  background: var(--bg);
+  background-attachment: fixed;
+  transition: opacity 0.6s ease;
   opacity: 0;
-  transition: opacity 0.8s ease;
 }
 body.loaded { opacity: 1; }
 
-main.dashboard {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  padding: 30px;
-}
-
-/* ==============================
-   HEADER E BREADCRUMB
-============================== */
+/* Header */
 .dash-header {
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-  color: #fff;
+  background: linear-gradient(90deg, #1e3a5f, #0074d9);
+  color: white;
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 .dash-header h1 {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-button#logout, button#exit-button {
-  background: var(--accent);
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 70px;
+  height: 100vh;
+  background: rgba(30,58,95,0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding-top: 20px;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  z-index: 1000;
+}
+.sidebar:hover { width: 210px; }
+.sidebar i {
+  color: white;
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.sidebar i:hover {
+  transform: scale(1.2);
+}
+
+/* Dashboard */
+.dashboard {
+  margin-left: 90px;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+/* Card effetto vetro */
+.card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+.card.wide {
+  grid-column: span 2;
+}
+
+/* Bottoni */
+button {
+  background: linear-gradient(90deg, var(--accent), var(--primary));
   border: none;
-  border-radius: 8px;
-  padding: 8px 15px;
+  padding: 10px 20px;
+  border-radius: 10px;
   color: white;
   font-weight: bold;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
   transition: all 0.3s ease;
 }
 button:hover {
-  background: #0074d9;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(0, 168, 255, 0.5);
+}
+button:active {
+  transform: scale(0.95);
 }
 
-.breadcrumb-bar {
-  background: linear-gradient(90deg, #1e3a5f, #0074d9);
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  font-size: 0.95rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+/* Progress Bar */
+.progress-bar {
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 10px;
+  height: 12px;
+  width: 100%;
+  margin-top: 8px;
+  overflow: hidden;
 }
-.home-link {
-  color: white;
-  text-decoration: none;
+.progress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--primary));
+  border-radius: 10px;
+  transition: width 0.2s ease-in-out;
+}
+.status {
+  font-size: 0.9rem;
   font-weight: bold;
+  margin-top: 8px;
 }
-.home-link:hover { opacity: 0.8; }
 
-/* ==============================
-   CARD ELEMENTI
-============================== */
-.card {
-  background: rgba(255,255,255,0.9);
-  border-radius: 16px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  padding: 20px;
+/* Sicurezza */
+.security-status {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+.status-box {
+  background: rgba(255,255,255,0.1);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: bold;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  backdrop-filter: blur(8px);
+  color: #fff;
 }
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+.green { border-left: 4px solid #2ecc71; }
+.yellow { border-left: 4px solid #f1c40f; }
+.red { border-left: 4px solid #e74c3c; }
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0,168,255,0.9);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.5s ease;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* ==============================
-   FOOTER
-============================== */
+/* Loader */
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #1e3a5f, #00a8ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  transition: opacity 0.5s ease;
+}
+.loader-overlay.hidden { opacity: 0; visibility: hidden; }
+.loader {
+  border: 6px solid rgba(255,255,255,0.2);
+  border-top: 6px solid white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Footer */
 footer {
   background: rgba(30,58,95,0.9);
   color: white;
@@ -106,24 +206,3 @@ footer {
   border-top: 1px solid rgba(255,255,255,0.2);
 }
 
-/* ==============================
-   LOADER ANIMATO
-============================== */
-.loader-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: linear-gradient(135deg, #1e3a5f, #00a8ff);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 2000;
-  transition: opacity 0.5s ease;
-}
-.loader-overlay.hidden { opacity: 0; visibility: hidden; }
-.loader {
-  border: 6px solid rgba(255,255,255,0.2);
-  border-top: 6px solid white;
-  border-radius: 50%;
-  width: 60px; height: 60px;
-  animation: spin 1s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
