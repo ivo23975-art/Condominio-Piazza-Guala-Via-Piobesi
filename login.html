@@ -38,9 +38,15 @@
     </footer>
   </div>
 
+  <div id="loader" class="loader-overlay hidden">
+    <div class="loader"></div>
+  </div>
+
   <script src="./js/login.js"></script>
   <script>
-    lucide.createIcons();
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+    });
   </script>
 </body>
 </html>
