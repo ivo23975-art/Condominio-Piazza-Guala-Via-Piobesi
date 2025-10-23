@@ -7,36 +7,26 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
     const role = document.getElementById("role").value;
+    if (!role) {
+      alert("Seleziona un ruolo per accedere.");
+      return;
+    }
 
-    // Mostra loader
+    // Mostra il loader per effetto visivo
     loader.classList.remove("hidden");
 
     setTimeout(() => {
       loader.classList.add("hidden");
 
-      // Controllo credenziali
+      // Reindirizza in base al ruolo scelto
       let redirect = "";
-      if (username === "condomino1" && password === "condominio123" && role === "condomino") {
-        redirect = "dashboards/dashboard-condomino.html";
-      } 
-      else if (username === "admincondominio" && password === "gestione2025" && role === "admin-condominio") {
-        redirect = "dashboards/dashboard-admin-condominio.html";
-      } 
-      else if (username === "adminsito" && password === "webcontrol2025" && role === "admin-sito") {
-        redirect = "dashboards/dashboard-admin-sito.html";
-      } 
-      else {
-        alert("❌ Credenziali non valide. Controlla utente, ruolo e password.");
-        return;
-      }
+      if (role === "condomino") redirect = "dashboards/dashboard-condomino.html";
+      if (role === "admin-condominio") redirect = "dashboards/dashboard-admin-condominio.html";
+      if (role === "admin-sito") redirect = "dashboards/dashboard-admin-sito.html";
 
-      // Salva sessione
-      localStorage.setItem("loggedUser", JSON.stringify({ username, role }));
+      localStorage.setItem("loggedUser", JSON.stringify({ username: "Demo", role }));
       window.location.href = redirect;
-    }, 800);
+    }, 1000);
   });
 });
-
