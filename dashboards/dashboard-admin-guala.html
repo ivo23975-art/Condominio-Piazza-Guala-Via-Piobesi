@@ -3,39 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>[TITOLO CRUSCOTTO] – Condominio Piazza Guala – Via Piobesi</title>
+  <title>Amministratore Condominio – Piazza Guala</title>
+
   <link rel="stylesheet" href="../css/dashboard.css" />
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.321.0/dist/umd/lucide.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body class="[CLASSE RUOLO]">
+<body class="admin-condominio">
+  <!-- Header -->
   <header class="dash-header">
-    <h1><i data-lucide="[ICONA]"></i> [TITOLO CRUSCOTTO]</h1>
+    <h1><i data-lucide="user-cog"></i> Amministratore Piazza Guala</h1>
     <button id="logout">Esci</button>
   </header>
 
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb-bar">
+    <div class="breadcrumb-left">
+      <a href="../index.html" class="home-link">🏠 Home</a>
+      <span id="breadcrumb-path">/ Amministratore Piazza Guala</span>
+    </div>
+    <button id="exit-button">🔑 Esci</button>
+  </nav>
+
+  <!-- Contenuto principale -->
   <main class="dashboard">
     <div class="card">
-      <h2><i data-lucide="mail"></i> Scambio Posta</h2>
-      <p>Area per la gestione della posta interna. <em>(In costruzione)</em></p>
+      <h2><i data-lucide="users"></i> Gestione Condòmini</h2>
+      <p>Visualizza e aggiorna le anagrafiche dei residenti. <em>(In costruzione)</em></p>
     </div>
 
     <div class="card">
-      <h2><i data-lucide="file-text"></i> Documenti</h2>
-      <p>Carica o visualizza i documenti relativi al tuo ruolo. <em>(In costruzione)</em></p>
+      <h2><i data-lucide="clipboard-list"></i> Spese e Bilanci</h2>
+      <p>Consulta e aggiorna i prospetti economici. <em>(In costruzione)</em></p>
     </div>
 
     <div class="card">
-      <h2><i data-lucide="alert-triangle"></i> Segnalazioni / Stato Servizi</h2>
-      <p>Consulta o invia segnalazioni. <em>(In costruzione)</em></p>
+      <h2><i data-lucide="megaphone"></i> Comunicazioni ufficiali</h2>
+      <p>Pubblica avvisi per i condòmini. <em>(In costruzione)</em></p>
+    </div>
+
+    <div class="card">
+      <h2><i data-lucide="alert-triangle"></i> Segnalazioni ricevute</h2>
+      <p>Gestisci le richieste e le segnalazioni provenienti dai residenti. <em>(In costruzione)</em></p>
     </div>
   </main>
 
-  <footer>
-    © 2025 Condominio Piazza Guala – Via Piobesi
-  </footer>
-
+  <footer>© 2025 Condominio Piazza Guala – Via Piobesi</footer>
   <script src="../js/dashboard.js"></script>
 </body>
 </html>
-
