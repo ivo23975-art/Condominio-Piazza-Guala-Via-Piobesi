@@ -4,17 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Accesso Portale Condominiale</title>
-
-  <!-- Collegamento al CSS -->
   <link rel="stylesheet" href="./css/login.css">
-
-  <!-- Icona sito (evita errore favicon 404) -->
   <link rel="icon" type="image/x-icon" href="./favicon.ico">
-
-  <!-- Icone Lucide -->
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-
 <body>
   <div class="login-container glass">
     <div class="login-header">
@@ -36,7 +29,7 @@
       </select>
 
       <label for="password">Password</label>
-      <input type="password" id="password" placeholder="••••••••" required>
+      <input type="password" id="password" placeholder="••••••••">
 
       <button type="submit" id="loginBtn">Accedi</button>
     </form>
@@ -46,19 +39,14 @@
     </footer>
   </div>
 
-  <!-- Loader -->
   <div id="loader" class="loader-overlay hidden">
     <div class="loader"></div>
   </div>
 
-  <!-- 🔧 Script corretto per GitHub Pages -->
+  <!-- Percorso corretto per GitHub Pages -->
   <script src="/Condominio-Piazza-Guala-Via-Piobesi/js/login.js"></script>
-
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      lucide.createIcons();
-      console.log("✅ Login page attiva e script caricato correttamente");
-    });
+    document.addEventListener("DOMContentLoaded", () => lucide.createIcons());
   </script>
 </body>
 </html>
