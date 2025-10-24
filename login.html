@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="css/login.css">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <!-- ✅ Libreria Lucide compatibile GitHub Pages -->
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.451.0/dist/umd/lucide.min.js"></script>
+  <!-- ✅ Libreria Lucide: versione compatibile GitHub Pages -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.363.0/dist/umd/lucide.min.js"></script>
 </head>
 
 <body>
@@ -51,11 +51,11 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      if (window.lucide && typeof window.lucide.createIcons === "function") {
+      if (window.lucide) {
         window.lucide.createIcons();
         console.log("✅ Lucide caricato correttamente");
       } else {
-        console.warn("⚠️ Lucide non caricato, ma il resto del sito funziona.");
+        console.warn("⚠️ Lucide non caricato (verifica CDN)");
       }
     });
   </script>
