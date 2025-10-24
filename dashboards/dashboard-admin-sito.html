@@ -3,33 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amministratore Sito – Condominio Piazza Guala</title>
+  <title>Amministratore Sito – Condominio Piazza Guala – Via Piobesi</title>
+
+  <!-- Fogli di stile e librerie -->
   <link rel="stylesheet" href="../css/dashboard.css" />
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.321.0/dist/umd/lucide.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body class="admin-sito">
+  <!-- Header -->
   <header class="dash-header">
-    <h1><i data-lucide="shield"></i> Amministratore Sito</h1>
+    <h1><i data-lucide="shield"></i> Dashboard Amministratore Sito</h1>
     <button id="logout">Esci</button>
   </header>
 
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb-bar">
+    <div class="breadcrumb-left">
+      <a href="../index.html" class="home-link">🏠 Home</a>
+      <span id="breadcrumb-path">/ Amministratore Sito</span>
+    </div>
+    <button id="exit-button">🔑 Esci</button>
+  </nav>
+
+  <!-- Contenuto principale -->
   <main class="dashboard">
+
+    <!-- Statistiche -->
     <div class="card wide">
-      <h2><i data-lucide="activity"></i> Statistiche Portale</h2>
+      <h2><i data-lucide="activity"></i> Statistiche del Portale</h2>
       <canvas id="statsChart"></canvas>
     </div>
 
+    <!-- Backup -->
     <div class="card">
       <h2><i data-lucide="database"></i> Backup del Sito</h2>
+      <p>Avvia un salvataggio completo dei dati e dei file.</p>
       <button id="backupBtn">Avvia Backup</button>
       <div class="progress-bar"><div class="progress"></div></div>
-      <p class="status"></p>
+      <p id="backupStatus" class="status"></p>
     </div>
 
+    <!-- Sicurezza -->
     <div class="card">
       <h2><i data-lucide="lock"></i> Sicurezza</h2>
+      <p>Monitoraggio in tempo reale dello stato del sito.</p>
       <div class="security-status">
         <div class="status-box green">🟢 Sistema protetto</div>
         <div class="status-box yellow">🟡 Firewall in aggiornamento</div>
@@ -38,7 +57,68 @@
     </div>
   </main>
 
-  <footer>© 2025 Condominio Piazza Guala – Via Piobesi</footer>
+  <!-- Footer -->
+  <footer>
+    © 2025 Condominio Piazza Guala – Via Piobesi
+  </footer>
+
+  <!-- Script -->
   <script src="../js/dashboard.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+
+      // === GRAFICO ===
+      const ctx = document.getElementById("statsChart");
+      if (ctx) {
+        new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"],
+            datasets: [{
+              label: "Visite giornaliere",
+              data: [5, 9, 7, 13, 10, 16, 22],
+              borderColor: "#00a8ff",
+              backgroundColor: "rgba(0,168,255,0.15)",
+              tension: 0.4,
+              fill: true
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: {
+              y: { beginAtZero: true, grid: { color: "rgba(0,0,0,0.1)" } },
+              x: { grid: { display: false } }
+            }
+          }
+        });
+      }
+
+      // === BACKUP SIMULATO ===
+      const backupBtn = document.getElementById("backupBtn");
+      const progress = document.querySelector(".progress");
+      const backupStatus = document.getElementById("backupStatus");
+
+      if (backupBtn && progress && backupStatus) {
+        backupBtn.addEventListener("click", () => {
+          let val = 0;
+          backupBtn.disabled = true;
+          backupStatus.textContent = "🔄 Backup in corso...";
+          progress.style.width = "0%";
+
+          const timer = setInterval(() => {
+            val += 5;
+            progress.style.width = val + "%";
+            if (val >= 100) {
+              clearInterval(timer);
+              backupStatus.textContent = "✅ Backup completato con successo!";
+              backupBtn.disabled = false;
+            }
+          }, 150);
+        });
+      }
+    });
+  </script>
 </body>
 </html>
