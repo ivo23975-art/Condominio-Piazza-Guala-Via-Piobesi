@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/login.css">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <!-- ✅ Libreria Lucide: versione compatibile GitHub Pages -->
+  <!-- ✅ Lucide compatibile GitHub Pages -->
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.363.0/dist/umd/lucide.min.js"></script>
 </head>
 
@@ -47,15 +47,17 @@
     <div class="loader"></div>
   </div>
 
+  <!-- ✅ Il tuo script login -->
   <script src="js/login.js"></script>
 
+  <!-- ✅ Inizializzazione Lucide -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      if (window.lucide) {
+      if (window.lucide && typeof window.lucide.createIcons === "function") {
         window.lucide.createIcons();
-        console.log("✅ Lucide caricato correttamente");
+        console.log("✅ Lucide correttamente inizializzato");
       } else {
-        console.warn("⚠️ Lucide non caricato (verifica CDN)");
+        console.error("❌ Lucide non inizializzato: CDN non caricato o versione errata");
       }
     });
   </script>
