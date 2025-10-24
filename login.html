@@ -4,10 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Accesso Portale Condominiale</title>
+
   <link rel="stylesheet" href="css/login.css">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- ✅ Lucide corretto -->
+  <script type="module">
+    import lucide from "https://cdn.jsdelivr.net/npm/lucide@0.451.0/+esm";
+    window.lucide = lucide;
+  </script>
 </head>
+
 <body>
   <div class="login-container glass">
     <div class="login-header">
@@ -45,7 +52,10 @@
 
   <script src="js/login.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", () => lucide.createIcons());
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.lucide) window.lucide.createIcons();
+      else console.error("⚠️ Lucide non inizializzato");
+    });
   </script>
 </body>
 </html>
