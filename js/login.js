@@ -2,7 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("loginForm");
   const loader = document.getElementById("loader");
 
-  if (!form) return;
+  if (!form) {
+    console.error("❌ Form non trovato!");
+    return;
+  }
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -15,28 +18,24 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Mostra loader
     loader.classList.remove("hidden");
 
+    // Simula caricamento
     setTimeout(() => {
       loader.classList.add("hidden");
-
-      // Login demo: nessuna password richiesta
       localStorage.setItem("loggedUser", JSON.stringify({ username, role }));
 
       let redirect = "";
       switch (role) {
         case "condomino":
-          redirect = "./dashboards/dashboard-condomino.html";
+          redirect = "dashboards/dashboard-condomino.html";
           break;
         case "admin-condominio":
-          redirect = "./dashboards/dashboard-admin-condominio.html";
+          redirect = "dashboards/dashboard-admin-condominio.html";
           break;
         case "admin-sito":
-          redirect = "./dashboards/dashboard-admin-sito.html";
+          redirect = "dashboards/dashboard-admin-sito.html";
           break;
-        default:
-          redirect = "./login.html";
       }
 
       console.log(`✅ Accesso effettuato come ${role}`);
