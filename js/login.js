@@ -7,8 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // 🔧 Test immediato per vedere se JS gira
-  console.log("✅ login.js caricato e attivo");
+  console.log("✅ login.js attivo");
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
