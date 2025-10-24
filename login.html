@@ -43,21 +43,20 @@
     </footer>
   </div>
 
-  <div id="loader" class="loader-overlay hidden" style="pointer-events:none;">
+  <div id="loader" class="loader-overlay hidden">
     <div class="loader"></div>
   </div>
 
-  <!-- ✅ Il tuo script login -->
   <script src="js/login.js"></script>
 
-  <!-- ✅ Inizializzazione Lucide -->
   <script>
+    // ✅ Inizializzazione Lucide senza errori
     document.addEventListener("DOMContentLoaded", () => {
       if (window.lucide && typeof window.lucide.createIcons === "function") {
         window.lucide.createIcons();
         console.log("✅ Lucide correttamente inizializzato");
       } else {
-        console.error("❌ Lucide non inizializzato: CDN non caricato o versione errata");
+        console.error("❌ Lucide non inizializzato – verifica CDN o connessione");
       }
     });
   </script>
