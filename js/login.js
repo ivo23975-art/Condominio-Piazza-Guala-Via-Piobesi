@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  // 🔧 Test immediato per vedere se JS gira
+  console.log("✅ login.js caricato e attivo");
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -20,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loader.classList.remove("hidden");
 
-    // Simula caricamento
     setTimeout(() => {
       loader.classList.add("hidden");
       localStorage.setItem("loggedUser", JSON.stringify({ username, role }));
@@ -38,8 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
           break;
       }
 
-      console.log(`✅ Accesso effettuato come ${role}`);
+      console.log(`➡️ Accesso effettuato come ${role}`);
       window.location.href = redirect;
-    }, 1000);
+    }, 800);
   });
 });
