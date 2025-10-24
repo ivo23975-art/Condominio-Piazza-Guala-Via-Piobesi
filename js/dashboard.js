@@ -1,85 +1,56 @@
 document.addEventListener("DOMContentLoaded", () => {
-  lucide.createIcons();
+  console.log("✅ Dashboard attiva");
 
-  // Fade-in e loader
-  window.addEventListener("load", () => document.body.classList.add("loaded"));
-  const loader = document.createElement("div");
-  loader.className = "loader-overlay";
-  loader.innerHTML = '<div class="loader"></div>';
-  document.body.appendChild(loader);
-  setTimeout(() => loader.classList.add("hidden"), 1000);
-  setTimeout(() => loader.remove(), 1800);
+  // Icone Lucide
+  if (window.lucide) lucide.createIcons();
 
-  // Logout / Exit
+  // Gestione logout
   const logoutBtn = document.getElementById("logout");
-  const exitBtn = document.getElementById("exit-button");
-  [logoutBtn, exitBtn].forEach(btn => {
-    if (btn) btn.addEventListener("click", () => {
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
       localStorage.removeItem("loggedUser");
       window.location.href = "../login.html";
     });
-  });
+  }
 
   // Breadcrumb dinamico
   const path = window.location.pathname;
-  let pageName = "Dashboard";
-  if (path.includes("condomino")) pageName = "Area Condòmino";
-  if (path.includes("admin-condominio")) pageName = "Amministratore Condominio";
-  if (path.includes("admin-sito")) pageName = "Amministratore Sito";
   const breadcrumb = document.getElementById("breadcrumb-path");
-  if (breadcrumb) breadcrumb.textContent = `/ ${pageName}`;
-
-  // Toast
-  function showToast(msg) {
-    const toast = document.createElement("div");
-    toast.className = "toast";
-    toast.textContent = msg;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.classList.add("show"), 50);
-    setTimeout(() => toast.classList.remove("show"), 3000);
-    setTimeout(() => toast.remove(), 3500);
+  if (breadcrumb) {
+    if (path.includes("condomino")) breadcrumb.textContent = "/ Area Condòmino";
+    if (path.includes("admin-condominio")) breadcrumb.textContent = "/ Amministratore Condominio";
+    if (path.includes("admin-sito")) breadcrumb.textContent = "/ Amministratore Sito";
   }
 
-  // Sidebar (solo admin)
-  if (document.body.classList.contains("admin-condominio") || document.body.classList.contains("admin-sito")) {
-    const sidebar = document.createElement("div");
-    sidebar.className = "sidebar";
-    sidebar.innerHTML = `
-      <i data-lucide="home"></i>
-      <i data-lucide="users"></i>
-      <i data-lucide="file-text"></i>
-      <i data-lucide="bell-ring"></i>
-      <i data-lucide="settings"></i>
-    `;
-    document.body.appendChild(sidebar);
-    lucide.createIcons();
-  }
-
-  // Backup simulato
+  // Backup demo per admin sito
   const backupBtn = document.getElementById("backupBtn");
   const progress = document.querySelector(".progress");
-  const backupStatus = document.getElementById("backupStatus");
-  if (backupBtn && progress && backupStatus) {
+  if (backupBtn && progress) {
     backupBtn.addEventListener("click", () => {
-      let val = 0;
-      backupBtn.disabled = true;
-      progress.style.width = "0%";
-      backupStatus.textContent = "🔄 Backup in corso...";
-      showToast("💾 Backup avviato...");
-
-      const timer = setInterval(() => {
-        val += 5;
-        progress.style.width = `${val}%`;
-
-        if (val >= 100) {
-          clearInterval(timer);
-          backupStatus.textContent = "✅ Backup completato con successo!";
-          showToast("✅ Backup completato!");
-          backupBtn.disabled = false;
-        }
-      }, 150);
+      let width = 0;
+      const interval = setInterval(() => {
+        width += 5;
+        progress.style.width = `${width}%`;
+        if (width >= 100) clearInterval(interval);
+      }, 100);
     });
   }
 
-  console.log("✅ Dashboard v2.2 operativa");
+  // Statistiche demo
+  const chartEl = document.getElementById("statsChart");
+  if (chartEl) {
+    new Chart(chartEl, {
+      type: "line",
+      data: {
+        labels: ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"],
+        datasets: [{
+          label: "Accessi al Portale",
+          data: [5, 10, 8, 15, 20, 13, 18],
+          borderColor: "#0074d9",
+          fill: false,
+          tension: 0.3
+        }]
+      }
+    });
+  }
 });
