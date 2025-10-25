@@ -3,140 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amministratore Parti Comuni – Condominio Piazza Guala e Via Piobesi</title>
-
+  <title>Amministratore – Parti Comuni</title>
   <link rel="stylesheet" href="../css/dashboard.css" />
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body class="admin-sito">
-  <!-- Header -->
+<body>
   <header class="dash-header">
-    <h1><i data-lucide="layers"></i> Amministratore Parti Comuni</h1>
-    <button id="logout">Esci</button>
+    <h1><i data-lucide="layout-dashboard"></i> Amministratore – Parti Comuni</h1>
+    <button id="exit-button">🔑 Esci</button>
   </header>
 
-  <!-- Breadcrumb -->
-  <nav class="breadcrumb-bar">
-    <div class="breadcrumb-left">
-      <a href="../index.html" class="home-link">🏠 Home</a>
-      <span id="breadcrumb-path">/ Parti Comuni</span>
-    </div>
-    <button id="exit-button">🔑 Esci</button>
-  </nav>
-
-  <!-- Contenuto principale -->
   <main class="dashboard">
-    
-    <!-- Sezione Coordinamento -->
-    <div class="card wide">
-      <h2><i data-lucide="git-branch"></i> Coordinamento Amministrativo</h2>
-      <p>Supervisiona e sincronizza i dati amministrativi di entrambi i complessi.</p>
+    <div class="card">
+      <h2>Cruscotto Parti Comuni</h2>
+      <p>
+        Area di supervisione generale per la gestione integrata tra i due complessi.  
+        Qui gli amministratori possono scambiare dati, documenti, comunicazioni e bilanci.
+      </p>
       <ul>
-        <li>📂 Ricezione e verifica bilanci da <strong>Piazza Guala</strong> e <strong>Via Piobesi</strong></li>
-        <li>💬 Canale dedicato per comunicazioni dirette tra amministratori</li>
-        <li>📊 Visione complessiva sugli esercizi finanziari unificati</li>
+        <li>🔄 Connessione con Amministratore Piazza Guala e Via Piobesi</li>
+        <li>📊 Monitoraggio attività comuni</li>
+        <li>📁 Archivio documenti condivisi</li>
+        <li>💬 Comunicazioni centralizzate</li>
       </ul>
     </div>
-
-    <!-- Scambio documenti -->
-    <div class="card">
-      <h2><i data-lucide="file-text"></i> Scambio Documenti</h2>
-      <p>Deposita e ricevi la documentazione dai due amministratori di condominio.</p>
-      <input type="file" id="uploadFile" multiple />
-      <ul id="fileList"></ul>
-    </div>
-
-    <!-- Comunicazioni -->
-    <div class="card">
-      <h2><i data-lucide="messages-square"></i> Comunicazioni Amministratori</h2>
-      <textarea id="newPost" placeholder="Scrivi una comunicazione..."></textarea>
-      <button id="publishBtn">Pubblica</button>
-      <ul id="postList"></ul>
-    </div>
-
-    <!-- Report e sintesi -->
-    <div class="card">
-      <h2><i data-lucide="bar-chart-3"></i> Report Finanziari Integrati</h2>
-      <p>Area dedicata alla generazione e al confronto dei bilanci combinati dei due complessi.</p>
-      <button id="generateReport">Genera Report</button>
-      <div id="reportStatus" class="status"></div>
-    </div>
-
-    <!-- Estensioni future -->
-    <div class="card">
-      <h2><i data-lucide="cpu"></i> Moduli e Funzionalità Future</h2>
-      <p>
-        Questa sezione è predisposta per l’integrazione di nuovi strumenti:
-        <ul>
-          <li>🧾 Contabilità automatizzata</li>
-          <li>🔗 Interfaccia diretta tra bilanci</li>
-          <li>📬 Gestione delle poste comuni</li>
-          <li>⚙️ Controllo fornitori condivisi</li>
-        </ul>
-      </p>
-    </div>
-
   </main>
 
-  <footer>© 2025 Condominio Piazza Guala – Via Piobesi – Parti Comuni</footer>
-  <script src="../js/dashboard.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      lucide.createIcons();
-
-      // === PUBBLICAZIONE COMUNICAZIONI ===
-      const publishBtn = document.getElementById("publishBtn");
-      const newPost = document.getElementById("newPost");
-      const postList = document.getElementById("postList");
-
-      if (publishBtn && newPost && postList) {
-        const saved = JSON.parse(localStorage.getItem("comunicazioni_parti_comuni") || "[]");
-        saved.forEach(t => addPost(t));
-
-        publishBtn.addEventListener("click", () => {
-          const text = newPost.value.trim();
-          if (!text) return alert("Scrivi una comunicazione!");
-          addPost(text);
-          saved.unshift(text);
-          localStorage.setItem("comunicazioni_parti_comuni", JSON.stringify(saved));
-          newPost.value = "";
-        });
-
-        function addPost(text) {
-          const li = document.createElement("li");
-          li.innerHTML = `<i data-lucide='message-circle'></i> ${text}`;
-          postList.prepend(li);
-          lucide.createIcons();
-        }
-      }
-
-      // === UPLOAD FILE ===
-      const uploadInput = document.getElementById("uploadFile");
-      const fileList = document.getElementById("fileList");
-      if (uploadInput && fileList) {
-        uploadInput.addEventListener("change", (e) => {
-          Array.from(e.target.files).forEach(file => {
-            const li = document.createElement("li");
-            li.innerHTML = `<i data-lucide='file'></i> ${file.name} <span style="color:#00a8ff;">(caricato)</span>`;
-            fileList.appendChild(li);
-          });
-          lucide.createIcons();
-        });
-      }
-
-      // === REPORT SIMULATO ===
-      const generateReport = document.getElementById("generateReport");
-      const reportStatus = document.getElementById("reportStatus");
-      if (generateReport && reportStatus) {
-        generateReport.addEventListener("click", () => {
-          reportStatus.textContent = "⏳ Generazione report in corso...";
-          setTimeout(() => {
-            reportStatus.textContent = "✅ Report integrato completato.";
-          }, 2000);
-        });
-      }
-    });
-  </script>
+  <footer>© 2025 Condominio Piazza Guala – Via Piobesi</footer>
+  <script> if (window.lucide) lucide.createIcons(); </script>
 </body>
 </html>
