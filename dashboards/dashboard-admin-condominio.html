@@ -3,40 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amministratore Condominio – Condominio Piazza Guala</title>
+  <title>Amministratore – Piazza Guala</title>
+
   <link rel="stylesheet" href="../css/dashboard.css" />
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.321.0/dist/umd/lucide.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    html, body {
+      margin: 0; padding: 0; height: 100%;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(145deg, #f5f8fc, #e9f1fa);
+      color: #1e3a5f; display: flex; flex-direction: column;
+    }
+    header.dash-header {
+      background: linear-gradient(90deg, #1e3a5f, #0074d9);
+      color: white; padding: 15px 20px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    main.dashboard {
+      flex: 1; display: flex; justify-content: center; align-items: center;
+      padding: 15px; box-sizing: border-box; width: 100%;
+    }
+    .card {
+      background: rgba(255,255,255,0.95);
+      border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      padding: 20px; width: 100%; max-width: 900px;
+      box-sizing: border-box; overflow-y: auto;
+    }
+    footer {
+      text-align: center; background: rgba(30,58,95,0.9);
+      color: white; padding: 10px; font-size: 0.9rem;
+    }
+    @media (max-height: 700px){ main.dashboard{align-items: flex-start;overflow-y:auto;} }
+    @media (max-width: 768px){
+      .card{padding:15px;margin:10px;}
+      header.dash-header{flex-direction:column;text-align:center;gap:8px;}
+    }
+  </style>
 </head>
 
-<body class="admin-condominio">
+<body>
   <header class="dash-header">
-    <h1><i data-lucide="user-cog"></i> Amministratore Condominio</h1>
-    <button id="logout">Esci</button>
+    <h1><i data-lucide="shield"></i> Amministratore – Piazza Guala</h1>
+    <button id="exit-button">🔑 Esci</button>
   </header>
 
   <main class="dashboard">
     <div class="card">
-      <h2><i data-lucide="users"></i> Gestione Condòmini</h2>
-      <p>Visualizza e aggiorna le informazioni dei residenti.</p>
-    </div>
-
-    <div class="card">
-      <h2><i data-lucide="clipboard-list"></i> Spese e Bilanci</h2>
-      <p>Consulta lo stato dei pagamenti e i bilanci.</p>
-    </div>
-
-    <div class="card">
-      <h2><i data-lucide="megaphone"></i> Comunicazioni Ufficiali</h2>
-      <p>Pubblica avvisi visibili a tutti i condòmini.</p>
-    </div>
-
-    <div class="card">
-      <h2><i data-lucide="alert-circle"></i> Segnalazioni Ricevute</h2>
-      <p>Controlla le segnalazioni inviate dai residenti.</p>
+      <h2>Cruscotto Amministratore Piazza Guala</h2>
+      <p>Gestione documentazione, esercizi finanziari, comunicazioni e accessi dedicati.</p>
+      <ul>
+        <li>📁 Gestione bilanci e verbali</li>
+        <li>💬 Comunicazioni ai consiglieri</li>
+        <li>🔐 Collegamento a “Parti Comuni”</li>
+        <li>🏢 Dati anagrafici condòmini</li>
+      </ul>
     </div>
   </main>
 
   <footer>© 2025 Condominio Piazza Guala – Via Piobesi</footer>
-  <script src="../js/dashboard.js"></script>
+  <script> if (window.lucide) lucide.createIcons(); </script>
 </body>
 </html>
