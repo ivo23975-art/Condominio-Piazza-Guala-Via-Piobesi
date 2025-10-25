@@ -3,49 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amministratore Condominio – Via Piobesi</title>
-
+  <title>Amministratore – Via Piobesi</title>
   <link rel="stylesheet" href="../css/dashboard.css" />
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body class="admin-condominio">
+<body>
   <header class="dash-header">
-    <h1><i data-lucide="user-cog"></i> Amministratore Via Piobesi</h1>
-    <button id="logout">Esci</button>
-  </header>
-
-  <nav class="breadcrumb-bar">
-    <div class="breadcrumb-left">
-      <a href="../index.html" class="home-link">🏠 Home</a>
-      <span id="breadcrumb-path">/ Amministratore Via Piobesi</span>
-    </div>
+    <h1><i data-lucide="shield"></i> Amministratore – Via Piobesi</h1>
     <button id="exit-button">🔑 Esci</button>
-  </nav>
+  </header>
 
   <main class="dashboard">
     <div class="card">
-      <h2><i data-lucide="users"></i> Gestione Condòmini</h2>
-      <p>Visualizza e aggiorna i dati dei residenti. <em>(In costruzione)</em></p>
-    </div>
-
-    <div class="card">
-      <h2><i data-lucide="clipboard-list"></i> Spese e Bilanci</h2>
-      <p>Monitora bilanci e movimenti contabili. <em>(In costruzione)</em></p>
-    </div>
-
-    <div class="card">
-      <h2><i data-lucide="megaphone"></i> Comunicazioni ufficiali</h2>
-      <p>Gestisci gli avvisi ai residenti. <em>(In costruzione)</em></p>
-    </div>
-
-    <div class="card">
-      <h2><i data-lucide="alert-triangle"></i> Segnalazioni ricevute</h2>
-      <p>Consulta le segnalazioni inviate dai condòmini. <em>(In costruzione)</em></p>
+      <h2>Cruscotto Amministratore Via Piobesi</h2>
+      <p>Gestione documentazione, esercizi finanziari, comunicazioni e collegamenti.</p>
+      <ul>
+        <li>📁 Gestione bilanci e verbali</li>
+        <li>💬 Comunicazioni ai consiglieri</li>
+        <li>🔐 Collegamento a “Parti Comuni”</li>
+        <li>🏢 Dati anagrafici condòmini</li>
+      </ul>
     </div>
   </main>
 
   <footer>© 2025 Condominio Piazza Guala – Via Piobesi</footer>
-  <script src="../js/dashboard.js"></script>
+  <script> if (window.lucide) lucide.createIcons(); </script>
 </body>
 </html>
