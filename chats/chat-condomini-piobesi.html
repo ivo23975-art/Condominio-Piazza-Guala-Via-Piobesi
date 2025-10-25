@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chat – Condòmini Piazza Guala</title>
+  <title>Chat Condòmini Via Piobesi</title>
 
   <link rel="stylesheet" href="../css/dashboard.css" />
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     html, body {
-      margin: 0; padding: 0;
-      height: 100%;
+      margin: 0; padding: 0; height: 100%;
       font-family: "Poppins", sans-serif;
       background: linear-gradient(145deg, #f5f8fc, #e9f1fa);
       color: #1e3a5f;
@@ -64,15 +63,13 @@
       background: linear-gradient(90deg, #00a8ff, #1e3a5f);
       color: white; border: none; border-radius: 8px;
       padding: 10px 16px; font-weight: bold; cursor: pointer;
+      transition: 0.3s ease;
     }
 
     footer {
       text-align: center; background: rgba(30,58,95,0.9);
       color: white; padding: 10px; font-size: 0.9rem;
     }
-
-    @media (max-height: 700px) { main.dashboard{align-items:flex-start;overflow-y:auto;} }
-    @media (max-width: 768px) { header.dash-header{flex-direction:column;text-align:center;gap:8px;} }
   </style>
 </head>
 
@@ -86,9 +83,10 @@
     <div class="card">
       <div class="chat-window" id="chatWindow">
         <p style="text-align:center;opacity:0.6;">
-          👋 Benvenuti nella chat dei condòmini di Piazza Guala.
+          👋 Benvenuti nella chat dei condòmini di <strong>Via Piobesi</strong>.
         </p>
       </div>
+
       <div class="chat-input">
         <input type="text" id="messageInput" placeholder="Scrivi un messaggio..." />
         <button id="sendBtn"><i data-lucide="send"></i> Invia</button>
@@ -99,6 +97,7 @@
   <footer>© 2025 Condominio Piazza Guala – Via Piobesi</footer>
 
   <script src="../js/chat.js"></script>
-  <script> if(window.lucide) lucide.createIcons(); </script>
+  <script> if (window.lucide) lucide.createIcons(); </script>
 </body>
 </html>
+
