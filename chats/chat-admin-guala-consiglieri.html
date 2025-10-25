@@ -10,12 +10,14 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
+    /* Impostazioni generali per sicurezza visibilità */
     body {
       font-family: "Poppins", sans-serif;
-      background: #f5f8fc;
+      background: linear-gradient(145deg, #f5f8fc, #e9f1fa);
       margin: 0;
       padding: 0;
-      opacity: 1 !important;
+      opacity: 1 !important; /* forza la visibilità */
+      color: #1e3a5f;
     }
 
     .dash-header {
@@ -35,7 +37,7 @@
     }
 
     .card {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       border-radius: 12px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.1);
       padding: 20px;
@@ -72,7 +74,7 @@
       border-radius: 8px;
       border: 1px solid #ccc;
       outline: none;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       font-size: 1rem;
     }
 
@@ -107,7 +109,7 @@
   </style>
 </head>
 
-<body class="chat-room" data-chat="chat-consiglieri-guala">
+<body class="chat-room" data-chat="chat-consiglieri-guala" style="opacity:1 !important;">
   <header class="dash-header">
     <h1><i data-lucide="messages-square"></i> Chat – Consiglieri Piazza Guala</h1>
     <button id="exit-button">🔑 Esci</button>
@@ -130,11 +132,13 @@
 
   <footer>© 2025 Condominio Piazza Guala – Via Piobesi</footer>
 
-  <!-- Script per la chat -->
+  <!-- Script della chat -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      // Forza visibilità e icone
+      document.body.style.opacity = "1";
       if (window.lucide) lucide.createIcons();
-      console.log("✅ chat.js interno attivo");
+      console.log("✅ Chat visibile e attiva");
 
       const chatWindow = document.getElementById("chatWindow");
       const input = document.getElementById("messageInput");
@@ -148,9 +152,10 @@
       const chatKey = document.body.dataset.chat || "chat-default";
       const saved = JSON.parse(localStorage.getItem(chatKey) || "[]");
 
-      // Mostra i messaggi salvati
+      // Mostra messaggi precedenti
       saved.forEach(msg => append(msg.text, msg.user, false));
 
+      // Funzione per appendere messaggi
       function append(text, user, save = true) {
         const msg = document.createElement("div");
         msg.className = "message";
@@ -164,6 +169,7 @@
         }
       }
 
+      // Pulsante Invia
       sendBtn.addEventListener("click", () => {
         const text = input.value.trim();
         if (!text) return;
@@ -171,7 +177,8 @@
         input.value = "";
       });
 
-      input.addEventListener("keypress", (e) => {
+      // Invio con Enter
+      input.addEventListener("keypress", e => {
         if (e.key === "Enter") {
           e.preventDefault();
           sendBtn.click();
