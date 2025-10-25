@@ -10,12 +10,12 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
-    /* Impostazioni di sicurezza per visibilità */
     body {
-      opacity: 1 !important;
-      background: #f5f8fc;
       font-family: "Poppins", sans-serif;
-      transition: opacity 0.4s ease-in-out;
+      background: #f5f8fc;
+      margin: 0;
+      padding: 0;
+      opacity: 1 !important;
     }
 
     .dash-header {
@@ -115,7 +115,11 @@
 
   <main class="dashboard">
     <div class="card wide">
-      <div class="chat-window" id="chatWindow"></div>
+      <div class="chat-window" id="chatWindow">
+        <p style="text-align:center; opacity:0.6;">
+          👋 Benvenuti nella chat dei Consiglieri di Piazza Guala.
+        </p>
+      </div>
 
       <div class="chat-input">
         <input type="text" id="messageInput" placeholder="Scrivi un messaggio..." />
@@ -126,22 +130,54 @@
 
   <footer>© 2025 Condominio Piazza Guala – Via Piobesi</footer>
 
-  <!-- Script per mostrare la pagina -->
+  <!-- Script per la chat -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      document.body.classList.add("loaded");
-      document.body.style.opacity = "1";
+      if (window.lucide) lucide.createIcons();
+      console.log("✅ chat.js interno attivo");
 
-      if (window.lucide) {
-        lucide.createIcons();
-        console.log("✅ Lucide inizializzato correttamente");
-      } else {
-        console.warn("⚠️ Lucide non trovato - le icone potrebbero non apparire");
+      const chatWindow = document.getElementById("chatWindow");
+      const input = document.getElementById("messageInput");
+      const sendBtn = document.getElementById("sendBtn");
+
+      if (!chatWindow || !input || !sendBtn) {
+        console.error("❌ Elementi della chat mancanti!");
+        return;
       }
+
+      const chatKey = document.body.dataset.chat || "chat-default";
+      const saved = JSON.parse(localStorage.getItem(chatKey) || "[]");
+
+      // Mostra i messaggi salvati
+      saved.forEach(msg => append(msg.text, msg.user, false));
+
+      function append(text, user, save = true) {
+        const msg = document.createElement("div");
+        msg.className = "message";
+        msg.innerHTML = `<strong>${user}</strong>: ${text}`;
+        chatWindow.appendChild(msg);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+
+        if (save) {
+          saved.push({ text, user });
+          localStorage.setItem(chatKey, JSON.stringify(saved));
+        }
+      }
+
+      sendBtn.addEventListener("click", () => {
+        const text = input.value.trim();
+        if (!text) return;
+        append(text, "Tu");
+        input.value = "";
+      });
+
+      input.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          sendBtn.click();
+        }
+      });
     });
   </script>
-
-  <!-- Collegamento allo script principale -->
-  <script src="../js/chat.js"></script>
 </body>
 </html>
