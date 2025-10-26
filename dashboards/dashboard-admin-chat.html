@@ -1,1 +1,165 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Chat – Super Amministratore</title>
+
+  <link rel="stylesheet" href="../css/dashboard.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(145deg, #f5f8fc, #e9f1fa);
+      color: #1e3a5f;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header.dash-header {
+      background: linear-gradient(90deg, #1e3a5f, #0074d9);
+      color: white;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    main {
+      flex: 1;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      justify-content: center;
+      align-content: flex-start;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.9);
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .card i {
+      width: 40px;
+      height: 40px;
+      color: #0074d9;
+      margin-bottom: 10px;
+    }
+
+    .card button {
+      background: linear-gradient(90deg, #00a8ff, #1e3a5f);
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .card button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 12px rgba(0,168,255,0.4);
+    }
+
+    footer {
+      background: rgba(30,58,95,0.9);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      main { grid-template-columns: 1fr; }
+      .card { margin: 5px 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="dash-header">
+    <h1><i data-lucide="shield"></i> Pannello Super Admin – Gestione Chat</h1>
+    <button id="exit-button">🔑 Esci</button>
+  </header>
+
+  <main>
+    <!-- Gruppo Helpdesk -->
+    <div class="card">
+      <i data-lucide="life-buoy"></i>
+      <h2>Helpdesk</h2>
+      <p>Gestisci richieste di supporto tecnico e segnalazioni.</p>
+      <button onclick="openChat('../chats/chat-helpdesk.html')">Apri Chat</button>
+    </div>
+
+    <!-- Gruppo Consiglieri -->
+    <div class="card">
+      <i data-lucide="users"></i>
+      <h2>Consiglieri Piazza Guala</h2>
+      <p>Supervisiona conversazioni tra i consiglieri del complesso Guala.</p>
+      <button onclick="openChat('../chats/chat-consiglieri-guala.html')">Apri Chat</button>
+    </div>
+
+    <div class="card">
+      <i data-lucide="users"></i>
+      <h2>Consiglieri Via Piobesi</h2>
+      <p>Supervisiona conversazioni tra i consiglieri del complesso Piobesi.</p>
+      <button onclick="openChat('../chats/chat-consiglieri-piobesi.html')">Apri Chat</button>
+    </div>
+
+    <!-- Gruppo Rappresentanti -->
+    <div class="card">
+      <i data-lucide="briefcase"></i>
+      <h2>Rappresentanti Parti Comuni</h2>
+      <p>Monitora i rappresentanti di entrambi i complessi.</p>
+      <button onclick="openChat('../chats/chat-rappresentanti.html')">Apri Chat</button>
+    </div>
+
+    <!-- Gruppo Intercomplesso -->
+    <div class="card">
+      <i data-lucide="network"></i>
+      <h2>Chat Intercomplesso</h2>
+      <p>Dialogo tra Consiglieri e Amministratori di Guala e Piobesi.</p>
+      <button onclick="openChat('../chats/chat-intercomplesso.html')">Apri Chat</button>
+    </div>
+
+    <!-- Gruppo Amministratori -->
+    <div class="card">
+      <i data-lucide="user-cog"></i>
+      <h2>Amministratori</h2>
+      <p>Comunicazioni dirette tra Amministratori di Guala e Piobesi.</p>
+      <button onclick="openChat('../chats/chat-admins.html')">Apri Chat</button>
+    </div>
+  </main>
+
+  <footer>© 2025 Condominio Piazza Guala – Via Piobesi</footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.lucide) lucide.createIcons();
+      console.log("✅ Dashboard Super Admin pronta");
+    });
+
+    function openChat(url) {
+      window.open(url, "_blank", "width=950,height=700,scrollbars=yes,resizable=yes");
+    }
+  </script>
+</body>
+</html>
 
