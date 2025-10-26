@@ -1,1 +1,151 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pannello Chat – Amministratore Sito</title>
+
+  <link rel="stylesheet" href="../css/dashboard.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      background: linear-gradient(145deg, #f5f8fc, #e9f1fa);
+      color: #1e3a5f;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(90deg, #1e3a5f, #0074d9);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    header h1 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.4rem;
+    }
+
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(30,58,95,0.08);
+      padding: 15px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .menu button {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(90deg, #00a8ff, #1e3a5f);
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .menu button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    main {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 1000px;
+      height: 75vh;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      background: white;
+      transition: opacity 0.4s ease;
+    }
+
+    footer {
+      text-align: center;
+      background: rgba(30,58,95,0.9);
+      color: white;
+      padding: 12px;
+      font-size: 0.9rem;
+      backdrop-filter: blur(8px);
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.1rem; }
+      .menu button { padding: 8px 10px; font-size: 0.85rem; }
+      iframe { height: 70vh; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1><i data-lucide="shield"></i> Pannello Chat – Amministratore Sito</h1>
+    <button id="exit-button">🔑 Esci</button>
+  </header>
+
+  <nav class="menu">
+    <button data-chat="../chats/chat-condomini-guala.html"><i data-lucide="home"></i> Guala Condòmini</button>
+    <button data-chat="../chats/chat-condomini-piobesi.html"><i data-lucide="building"></i> Piobesi Condòmini</button>
+    <button data-chat="../chats/chat-consiglieri-guala.html"><i data-lucide="users"></i> Consiglieri Guala</button>
+    <button data-chat="../chats/chat-consiglieri-piobesi.html"><i data-lucide="users"></i> Consiglieri Piobesi</button>
+    <button data-chat="../chats/chat-intercomplesso.html"><i data-lucide="link"></i> Intercomplesso</button>
+    <button data-chat="../chats/chat-helpdesk.html"><i data-lucide="life-buoy"></i> Helpdesk</button>
+    <button data-chat="../chats/chat-admin.html"><i data-lucide="settings"></i> Amministratori</button>
+  </nav>
+
+  <main>
+    <iframe id="chatFrame" src="../chats/chat-helpdesk.html"></iframe>
+  </main>
+
+  <footer>
+    © 2025 Condominio Piazza Guala – Via Piobesi | Area riservata Amministratore Sito
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.lucide) lucide.createIcons();
+
+      const buttons = document.querySelectorAll(".menu button");
+      const frame = document.getElementById("chatFrame");
+
+      buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          frame.style.opacity = "0";
+          setTimeout(() => {
+            frame.src = btn.dataset.chat;
+            frame.style.opacity = "1";
+          }, 300);
+        });
+      });
+
+      console.log("✅ Pannello Admin Chat operativo");
+    });
+  </script>
+</body>
+</html>
 
