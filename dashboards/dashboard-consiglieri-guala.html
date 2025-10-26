@@ -1,1 +1,74 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consiglieri – Piazza Guala</title>
+
+  <link rel="stylesheet" href="../css/dashboard.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    .btn-chat {
+      background: linear-gradient(90deg, #0074d9, #1e3a5f);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 20px;
+      width: 100%;
+      text-align: left;
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-chat:hover {
+      background: linear-gradient(90deg, #00a8ff, #1e3a5f);
+      transform: translateY(-2px);
+    }
+
+    .card {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .btn-chat { font-size: 1rem; padding: 12px; }
+      .card { padding: 15px; }
+    }
+  </style>
+</head>
+
+<body class="dashboard-page">
+  <header class="dash-header">
+    <h1><i data-lucide="users"></i> Cruscotto Consiglieri – Piazza Guala</h1>
+    <button onclick="location.href='../login.html'">🔑 Esci</button>
+  </header>
+
+  <main class="dashboard">
+    <div class="card">
+      <h2><i data-lucide="messages-square"></i> Comunicazioni e Chat</h2>
+
+      <button class="btn-chat" onclick="location.href='../chats/chat-consiglieri-guala.html'">
+        💬 Chat Consiglieri Piazza Guala
+      </button>
+
+      <button class="btn-chat" onclick="location.href='../chats/chat-admin-guala-consiglieri.html'">
+        🧑‍💼 Chat con Amministratore Piazza Guala
+      </button>
+
+      <button class="btn-chat" onclick="location.href='../chats/chat-consiglieri-intercomplesso.html'">
+        🔗 Chat Consiglieri Intercomplesso (Guala + Piobesi)
+      </button>
+    </div>
+  </main>
+
+  <footer>© 2025 Condominio Piazza Guala – Via Piobesi | Area Consiglieri</footer>
+  <script>if (window.lucide) lucide.createIcons();</script>
+</body>
+</html>
 
