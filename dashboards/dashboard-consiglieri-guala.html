@@ -67,6 +67,25 @@
       margin-bottom: 8px;
       border-radius: 8px;
       word-wrap: break-word;
+      position: relative;
+    }
+
+    .timestamp {
+      display: block;
+      text-align: right;
+      font-size: 0.75rem;
+      color: #555;
+      margin-top: 3px;
+    }
+
+    .welcome {
+      text-align: center;
+      opacity: 0.7;
+      margin-bottom: 10px;
+      background: #e7f4ff;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: 500;
     }
 
     .chat-input {
@@ -131,9 +150,10 @@
   <main class="dashboard">
     <div class="card">
       <div class="chat-window" id="chatWindow">
-        <p style="text-align:center; opacity:0.6;">
-          👋 Benvenuti nella chat dei Consiglieri di <strong>Piazza Guala</strong>.
-        </p>
+        <div class="welcome">
+          👋 Benvenuti nella chat dei Consiglieri di <strong>Piazza Guala</strong>.<br>
+          Utilizzate questo spazio per comunicazioni interne tra consiglieri.
+        </div>
       </div>
 
       <div class="chat-input">
@@ -148,32 +168,33 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       if (window.lucide) lucide.createIcons();
-      console.log("✅ chat-consiglieri-guala attiva");
+      console.log("✅ chat-consiglieri-guala attiva con data e saluto");
 
       const chatWindow = document.getElementById("chatWindow");
       const input = document.getElementById("messageInput");
       const sendBtn = document.getElementById("sendBtn");
-
-      if (!chatWindow || !input || !sendBtn) {
-        console.error("❌ Elementi chat mancanti!");
-        return;
-      }
-
       const chatKey = document.body.dataset.chat || "chat-consiglieri-guala";
       const saved = JSON.parse(localStorage.getItem(chatKey) || "[]");
 
-      // Mostra messaggi salvati
-      saved.forEach(msg => append(msg.text, msg.user, false));
+      saved.forEach(msg => append(msg.text, msg.user, msg.time, false));
 
-      function append(text, user, save = true) {
+      function getDateTime() {
+        const now = new Date();
+        return now.toLocaleString("it-IT", {
+          day: "2-digit", month: "2-digit", year: "numeric",
+          hour: "2-digit", minute: "2-digit"
+        });
+      }
+
+      function append(text, user, time = getDateTime(), save = true) {
         const msg = document.createElement("div");
         msg.className = "message";
-        msg.innerHTML = `<strong>${user}</strong>: ${text}`;
+        msg.innerHTML = `<strong>${user}</strong>: ${text}<span class="timestamp">${time}</span>`;
         chatWindow.appendChild(msg);
         chatWindow.scrollTop = chatWindow.scrollHeight;
 
         if (save) {
-          saved.push({ text, user });
+          saved.push({ text, user, time });
           localStorage.setItem(chatKey, JSON.stringify(saved));
         }
       }
